@@ -1,1 +1,1 @@
-modify a.md
+delete b.md
