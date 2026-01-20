@@ -23,6 +23,10 @@ def get_challenger_league():
         print("✅ 데이터 수집 완료!")
     else:
         print(f"❌ 에러 발생: {response.status_code}")
+        if response.status_code == 429:
+            print("⏳ API 요청 제한(Rate Limit)에 걸렸습니다. 잠시 후 다시 시도하세요.")
+        elif response.status_code == 403:
+            print("🔑 API 키가 만료되었거나 잘못되었습니다. .env 파일을 확인하세요.")
 
 if __name__ == "__main__":
     get_challenger_league()

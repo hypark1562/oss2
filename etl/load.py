@@ -15,8 +15,8 @@ def load_to_db():
     
     # 3. DB에 넣기 (테이블 이름: matches)
     # if_exists='replace'는 덮어쓰기, 'append'는 추가하기
-    df.to_sql("matches", con=engine, if_exists='replace', index=False)
-    print("✅ DB 적재 완료! (Table: matches)")
+    df.to_sql("users", con=engine, if_exists='replace', index=False)
+    print("✅ DB 적재 완료! (Table: users)")
 
 if __name__ == "__main__":
     load_to_db()
