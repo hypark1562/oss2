@@ -1,14 +1,13 @@
 import pandas as pd
 import numpy as np
 import os
-import json # <--- json 모듈 추가
+import json
 from sklearn.impute import KNNImputer
 
 def process_data():
     print("🔄 데이터 전처리 시작...")
 
-    # 1. JSON 파일 구조에 맞게 읽기 (수정된 부분)
-    # 그냥 read_json을 쓰면 안 되고, 'entries' 리스트를 꺼내야 함
+    # 1. Load Data
     file_path = "data/raw/challenger_data.json"
     
     if not os.path.exists(file_path):
@@ -18,28 +17,44 @@ def process_data():
     with open(file_path, "r", encoding="utf-8") as f:
         raw_data = json.load(f)
     
-    # 'entries' 키 안에 실제 유저 데이터가 들어있음
     if 'entries' in raw_data:
+        # ------------------------------------------------------------------
+        # [Critical Fix] README와의 정합성을 위한 PyArrow 변환
+        # ------------------------------------------------------------------
+        # 1) 일단 기본 DataFrame 생성
         df = pd.DataFrame(raw_data['entries'])
+        
+        # 2) PyArrow 백엔드로 변환 (이 한 줄이 있어야 README가 참말이 됨)
+        try:
+            df = df.convert_dtypes(dtype_backend="pyarrow")
+            print("✅ PyArrow Backend 적용 완료 (Memory Optimization)")
+        except Exception as e:
+            print(f"⚠️ PyArrow 변환 실패 (기존 NumPy 사용): {e}")
+            
     else:
         print("❌ JSON 구조가 예상과 다릅니다 ('entries' 키 없음)")
         return
 
     # 2. [비즈니스 로직] Data Leakage 제거
-    # (gold_earned 컬럼이 있다면 삭제 - 챌린저 데이터엔 없을 수도 있음)
+    # Note: 챌린저 유저 정보에는 골드 데이터가 없으나, 추후 Match 데이터 처리 시를 위한 로직임
     if 'gold_earned' in df.columns:
         df = df.drop(columns=['gold_earned'])
         print("⚠️ Data Leakage 방지를 위해 'gold_earned' 컬럼 삭제함")
 
     # 3. [공학적 로직] 결측치 처리 (KNN)
-    # 수치형 컬럼만 선택 (wins, losses, leaguePoints 등)
-    numeric_cols = df.select_dtypes(include=[np.number]).columns
+    # PyArrow 타입에서는 select_dtypes(include=[np.number])가 안 먹힐 수 있음 -> 안전하게 처리
+    numeric_cols = df.select_dtypes(include=['int64', 'float64', 'Int64', 'Float64']).columns
     
-    # ★ 에러 방지용 안전장치 추가 ★
     if len(numeric_cols) > 0:
+        # KNNImputer는 아직 PyArrow 타입을 완벽 지원하지 않을 수 있어 numpy로 변환 후 처리
         imputer = KNNImputer(n_neighbors=5)
-        df[numeric_cols] = imputer.fit_transform(df[numeric_cols])
-        print(f"✅ {len(numeric_cols)}개 컬럼에 대해 KNN 결측치 보간 완료")
+        df_numeric = df[numeric_cols].to_numpy() # NumPy로 변환
+        
+        imputed_data = imputer.fit_transform(df_numeric)
+        
+        # 다시 DataFrame에 넣기
+        df[numeric_cols] = imputed_data
+        print(f"✅ {len(numeric_cols)}개 컬럼(Wins, Losses 등)에 대해 KNN 결측치 보간 완료")
     else:
         print("⚠️ 수치형 컬럼을 찾을 수 없어 KNN 건너뜀")
 
