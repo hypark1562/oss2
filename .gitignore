@@ -1,10 +1,8 @@
-# 1. 보안 관련 (절대 올리지 말 것)
 .env
 api_key.txt
 secrets.json
 config.py
 
-# 2. 가상환경 및 시스템 파일
 venv/
 env/
 .idea/
@@ -13,8 +11,6 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# 3. 데이터 관련 (원본 데이터가 너무 크면 무시)
-# (이미지와 스키마는 올려야 하므로 data/schema/는 제외하지 않음)
 data/raw/*.csv
 data/raw/*.json
 data/processed/

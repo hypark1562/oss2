@@ -7,7 +7,7 @@ from sklearn.impute import KNNImputer
 def process_data():
     print("🔄 데이터 전처리 시작...")
 
-    # 1. Load Data
+   
     file_path = "data/raw/challenger_data.json"
     
     if not os.path.exists(file_path):
@@ -21,10 +21,10 @@ def process_data():
         # ------------------------------------------------------------------
         # [Critical Fix] README와의 정합성을 위한 PyArrow 변환
         # ------------------------------------------------------------------
-        # 1) 일단 기본 DataFrame 생성
+        
         df = pd.DataFrame(raw_data['entries'])
         
-        # 2) PyArrow 백엔드로 변환 (이 한 줄이 있어야 README가 참말이 됨)
+        
         try:
             df = df.convert_dtypes(dtype_backend="pyarrow")
             print("✅ PyArrow Backend 적용 완료 (Memory Optimization)")
@@ -35,13 +35,13 @@ def process_data():
         print("❌ JSON 구조가 예상과 다릅니다 ('entries' 키 없음)")
         return
 
-    # 2. [비즈니스 로직] Data Leakage 제거
-    # Note: 챌린저 유저 정보에는 골드 데이터가 없으나, 추후 Match 데이터 처리 시를 위한 로직임
+    
+    # 챌린저 유저 정보에는 골드 데이터가 없으나, 추후 Match 데이터 처리 시를 위한 로직임
     if 'gold_earned' in df.columns:
         df = df.drop(columns=['gold_earned'])
         print("⚠️ Data Leakage 방지를 위해 'gold_earned' 컬럼 삭제함")
 
-    # 3. [공학적 로직] 결측치 처리 (KNN)
+    
     # PyArrow 타입에서는 select_dtypes(include=[np.number])가 안 먹힐 수 있음 -> 안전하게 처리
     numeric_cols = df.select_dtypes(include=['int64', 'float64', 'Int64', 'Float64']).columns
     
@@ -58,7 +58,6 @@ def process_data():
     else:
         print("⚠️ 수치형 컬럼을 찾을 수 없어 KNN 건너뜀")
 
-    # 4. 저장
     os.makedirs("data/processed", exist_ok=True)
     df.to_csv("data/processed/cleaned_data.csv", index=False)
     print("✅ 데이터 저장 완료: data/processed/cleaned_data.csv")
