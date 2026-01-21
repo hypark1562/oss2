@@ -2,12 +2,11 @@
 
 name: LoL ETL Pipeline CI
 
-# [수정된 부분] on 밑에 push와 pull_request가 확실하게 들여쓰기 되어야 합니다.
 on:
   push:
-    branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 0 * * *'  # 매일 자정(UTC 기준)에 자동 실행
 
 permissions:
   contents: read
