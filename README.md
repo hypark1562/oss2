@@ -1,3 +1,6 @@
+![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB?logo=python&logoColor=white)
+![Build Status](https://github.com/hypark1562/oss2/actions/workflows/python-app.yml/badge.svg)
+
 # 📉 LoL Data ETL Pipeline & Cost Optimization (Baseline)
 
 ### 📌 Project Overview
