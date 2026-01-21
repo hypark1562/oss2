@@ -9,9 +9,15 @@ logger = logging.getLogger(__name__)
 
 def process_data() -> bool:
     """
-    Raw JSON 데이터를 읽어와 PyArrow 변환, 결측치 처리(KNN), Leakage 제거를 수행합니다.
+    Raw Data(JSON)를 로드하여 전처리(Cleaning, Imputation)를 수행합니다.
+
+    Key Logic:
+        1. Efficiency: PyArrow 백엔드 사용으로 메모리 최적화.
+        2. Integrity: KNN 보간법을 통한 결측치 처리.
+        3. Business Logic: Data Leakage 유발 컬럼 제거.
+
     Returns:
-        bool: 전처리 성공 여부
+        bool: 전처리 프로세스 성공 여부
     """
     logger.info("🔄 [Transform] 데이터 전처리 프로세스 시작...")
 
@@ -28,8 +34,10 @@ def process_data() -> bool:
         if 'entries' not in raw_data:
             logger.error("❌ [Transform] JSON 구조 오류 ('entries' 키 없음)")
             return False
-
         
+        # ---------------------------------------------------------
+        # 1. [Efficiency] PyArrow Backend 도입
+        # ---------------------------------------------------------
         df = pd.DataFrame(raw_data['entries'])
         
         try:
@@ -38,12 +46,17 @@ def process_data() -> bool:
         except Exception as e:
             logger.warning(f"⚠️ PyArrow 변환 실패 (NumPy 사용): {e}")
 
-        
+        # ---------------------------------------------------------
+        # 2. [Business Logic] Data Leakage 제거
+        # ---------------------------------------------------------
         if 'gold_earned' in df.columns:
             df = df.drop(columns=['gold_earned'])
             logger.info("⚠️ [Integrity] Data Leakage 방지: 'gold_earned' 컬럼 삭제")
 
-        
+        # ---------------------------------------------------------
+        # 3. [Data Integrity] KNN 기반 결측치 처리
+        # ---------------------------------------------------------
+        # 단순 평균(Mean) 대치는 티어 간 실력 격차를 무시하므로, 유사 유저 그룹(K=5) 기반 보간 사용.
         numeric_cols = df.select_dtypes(include=['int64', 'float64', 'Int64', 'Float64']).columns
         
         if len(numeric_cols) > 0:
@@ -57,6 +70,7 @@ def process_data() -> bool:
         else:
             logger.warning("⚠️ 수치형 컬럼 부재로 KNN 건너뜀")
 
+        # 4. 저장 (Processed Layer)
         os.makedirs("data/processed", exist_ok=True)
         save_path = "data/processed/cleaned_data.csv"
         df.to_csv(save_path, index=False)

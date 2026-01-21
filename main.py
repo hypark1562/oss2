@@ -1,12 +1,12 @@
 import logging
 import sys
 
-
+# ETL 모듈 Import
 from etl.extract import get_challenger_league
 from etl.transform import process_data
 from etl.load import load_to_db
 
-
+# 전역 로깅 설정 (Console Output)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -18,6 +18,11 @@ logging.basicConfig(
 logger = logging.getLogger("ETL_Pipeline")
 
 def run_pipeline():
+    """
+    [ETL Orchestrator]
+    데이터 수집(Extract) -> 전처리(Transform) -> 적재(Load) 과정을 순차적으로 실행합니다.
+    한 단계라도 실패 시 파이프라인을 즉시 중단(Fail-Fast)합니다.
+    """
     logger.info("🚀 [ETL Pipeline] 작업을 시작합니다...")
 
     

@@ -5,7 +5,7 @@ import logging
 import time
 from dotenv import load_dotenv
 
-
+# 로거 설정
 logger = logging.getLogger(__name__)
 
 load_dotenv()
@@ -13,9 +13,14 @@ API_KEY = os.getenv("RIOT_API_KEY")
 
 def get_challenger_league() -> bool:
     """
-    Riot API에서 챌린저 리그 정보를 수집하여 JSON으로 저장합니다.
+    Riot API(League-V4)에서 챌린저 티어의 유저 데이터를 수집합니다.
+    
+    Notes:
+        - API Rate Limit(429) 발생 시 별도 처리는 상위 모듈에서 담당하거나, 재시도 로직 추가 필요.
+        - 수집된 데이터는 Raw Layer인 'data/raw/' 경로에 JSON 포맷으로 저장됨.
+
     Returns:
-        bool: 수집 성공 여부
+        bool: 수집 성공 여부 (True: 성공, False: 실패)
     """
     url = f"https://kr.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key={API_KEY}"
     
@@ -23,6 +28,7 @@ def get_challenger_league() -> bool:
         logger.info("🔄 [Extract] Riot API 데이터 요청 시작...")
         response = requests.get(url)
         
+        # [Risk Management] 장애 유형별 로깅
         if response.status_code == 200:
             data = response.json()
             
