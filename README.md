@@ -19,6 +19,12 @@
 
 3.  **Data Leakage Prevention:**
     - 게임 승패(`win`) 예측 시, 게임 종료 후 확정되는 사후 데이터(예: `gold_earned`)를 학습에서 배제하여 모델 신뢰성 확보.
+## 🚀 Quick Start
+
+**1. 환경 설정**
+```bash
+# 필수 라이브러리 설치
+pip install -r requirements.txt
 
 ### 🗂️ Data Schema (ERD)
 > **데이터 무결성(Integrity)을 위해 3개의 정규화된 테이블로 설계했습니다.**
