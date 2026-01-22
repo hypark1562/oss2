@@ -1,51 +1,51 @@
-import pandas as pd
-from sqlalchemy import create_engine
-import os
 import logging
-from dotenv import load_dotenv
+import os
+import sqlite3
+
+import pandas as pd
+
+from utils.config import config
 
 logger = logging.getLogger(__name__)
-load_dotenv()
 
 
 def load_to_db() -> bool:
     """
-    전처리된 데이터를 읽어 Data Warehouse(SQLite/MySQL)에 적재합니다.
+    Load Processed Data (CSV) into SQLite Database.
 
-    Schema Info:
-        - Table 'users': 소환사 정보를 담고 있는 Dimension Table.
-        - Strategy: 'replace' (배치 수행 시마다 갱신). 추후 Incremental Update로 고도화 예정.
+    This function ensures idempotency by using the 'replace' strategy.
+    The table is dropped and recreated on every run to maintain a fresh state.
 
     Returns:
-        bool: 적재 성공 여부
+        bool: True if loading is successful, False otherwise.
     """
     try:
-        # 1. DB Connection 생성
-        db_url = os.getenv("DB_URL")
-        if not db_url:
-            logger.error("❌ [Load] DB_URL 환경변수가 없습니다.")
+        csv_path = config["path"]["processed_data"]
+        db_path = config["path"]["db_path"]
+
+        if not os.path.exists(csv_path):
+            logger.error(f"[Load] Source CSV file not found: {csv_path}")
             return False
 
-        engine = create_engine(db_url)
+        # Load Data
+        df = pd.read_csv(csv_path)
 
-        # 2. Processed Data 로드
-        file_path = "data/processed/cleaned_data.csv"
-        if not os.path.exists(file_path):
-            logger.error(f"❌ [Load] 전처리된 파일이 없습니다: {file_path}")
-            return False
+        # Connect to Database (Creates file if not exists)
+        conn = sqlite3.connect(db_path)
 
-        df = pd.read_csv(file_path)
-
-        # 3. 데이터 적재 (Loading)
-        # 현재는 유저 정보이므로 'users' 테이블에 적재 (ERD 설계 준수)
+        # Write to Table
         table_name = "users"
-        df.to_sql(table_name, con=engine, if_exists="replace", index=False)
+        df.to_sql(table_name, conn, if_exists="replace", index=False)
 
-        logger.info(f"✅ [Load] DB 적재 완료! (Table: {table_name}, Rows: {len(df)})")
+        conn.close()
+
+        logger.info(
+            f"[Load] Successfully loaded {len(df)} records into '{table_name}' table."
+        )
         return True
 
     except Exception as e:
-        logger.exception(f"❌ [Load] DB 적재 중 오류 발생: {e}")
+        logger.exception(f"[Load] Database Operation Error: {e}")
         return False
 
 
