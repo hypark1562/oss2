@@ -8,10 +8,35 @@ An End-to-End data pipeline that collects, transforms, loads, and visualizes Lea
 
 ## Architecture Overview
 
-1. Extract: Fetch raw data from Riot API (JSON).
-2. Transform: Process data using Pandas/PyArrow (Cleaned CSV).
-3. Load: Store processed data into SQLite Database.
-4. Visualize: Analyze metrics via Streamlit Dashboard.
+## Architecture Overview
+
+```mermaid
+graph LR
+    %% 노드 정의
+    A[Riot API]
+    B(Raw Data <br/> JSON)
+    C{Data Processing <br/> Pandas/PyArrow}
+    D[(SQLite DB)]
+    E[Streamlit <br/> Dashboard]
+
+    %% 데이터 흐름
+    A -->|Extract| B
+    B -->|Transform| C
+    C -->|Load| D
+    C -->|Visualize| E
+
+    %% CI/CD 파이프라인 표시
+    subgraph DevOps [Automated Pipeline]
+        F[GitHub Actions] -.->|Test & Lint| C
+        G[Docker] -.->|Build| E
+    end
+
+    %% 스타일링 (색상 입히기)
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#ff9,stroke:#333,stroke-width:2px
+    style E fill:#9f9,stroke:#333,stroke-width:2px
+```
 
 ---
 
