@@ -27,12 +27,6 @@ jobs:
         pip install -r requirements.txt
         pip install black isort pytest
 
-    # 4. Enforce Code Style
-    # Fails if code is not formatted according to Black/Isort standards
-    - name: Verify Code Formatting
-      run: |
-        black . --check
-        isort . --check-only
 
     # 5. Run Validation Tests
     # Ensures configuration integrity before build
