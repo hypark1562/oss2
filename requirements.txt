@@ -11,3 +11,4 @@ seaborn
 jupyter
 streamlit
 psycopg2-binary
+
