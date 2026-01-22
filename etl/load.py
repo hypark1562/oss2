@@ -1,40 +1,52 @@
-import logging
 import os
-import sqlite3
-
+import logging
 import pandas as pd
+from sqlalchemy import create_engine
+from sqlalchemy.exc import SQLAlchemyError
+from dotenv import load_dotenv
 
-# 방금 만든 로거 가져오기
-from utils.logger import setup_logger
+logger = logging.getLogger(__name__)
+load_dotenv()
 
-logger = setup_logger()
+def _get_engine():
+    user = os.getenv("DB_USER", "admin")
+    pw = os.getenv("DB_PASSWORD", "password123")
+    host = os.getenv("DB_HOST", "localhost")
+    port = os.getenv("DB_PORT", "5432")
+    db = os.getenv("DB_NAME", "lol_analytics")
+    return create_engine(f"postgresql://{user}:{pw}@{host}:{port}/{db}")
 
+"""
+Module: load.py
+Persists transformed data to PostgreSQL.
+Engine: SQLAlchemy for connection pooling and ORM compatibility.
+"""
 
-def load_data(df: pd.DataFrame, db_name="data/lol_data.db"):
+def load_data(df):
     """
-    전처리된 데이터를 SQLite DB 파일에 저장합니다.
+    Bulk load DataFrame to PostgreSQL.
+    Configured with 'replace' mode for initial build phase.
     """
+    if df.empty:
+        logger.info("No data to load. Task skipped.")
+        return
+
+    engine = _get_engine()
+    
     try:
-        logger.info("[Load] Starting data loading to SQLite...")
-
-        # 1. 데이터가 비어있으면 스킵
-        if df.empty:
-            logger.warning("[Load] DataFrame is empty. Skipping load.")
-            return
-
-        # 2. 저장할 폴더가 없으면 생성
-        os.makedirs(os.path.dirname(db_name), exist_ok=True)
-
-        # 3. SQLite DB 연결 (없으면 자동 생성됨)
-        conn = sqlite3.connect(db_name)
-
-        # 4. 데이터 저장 (테이블 이름: challenger_stats)
-        # if_exists='replace': 기존 데이터 지우고 새로 씀
-        df.to_sql("challenger_stats", conn, if_exists="replace", index=False)
-
-        conn.close()
-        logger.info(f"[Load] Successfully loaded {len(df)} rows into '{db_name}'.")
-
-    except Exception as e:
-        logger.error(f"[Load] Failed to load data: {e}")
-        raise e
+        # Bulk insert with 1000-row chunks for memory efficiency
+        df.to_sql(
+            "challenger_stats",
+            con=engine,
+            if_exists="replace",
+            index=False,
+            chunksize=1000,
+            method="multi"
+        )
+        logger.info("Database load successful.")
+        
+    except SQLAlchemyError as e:
+        logger.error(f"DB Load Failure: {e}")
+        raise
+    finally:
+        engine.dispose() # Clean up connection pool
