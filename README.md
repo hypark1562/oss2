@@ -90,7 +90,7 @@ lol-data-pipeline/
 ├── Makefile             # Automation Commands (Make run, Make test)
 ├── README.md            # Project Overview & Documentation
 └── requirements.txt     # Python Dependencies
-
+```
 ![Dashboard Preview](dashboard_preview.png)
 > **Snapshot:** Challenger Tier players' win-rate distribution and correlation analysis.
 
