@@ -4,51 +4,37 @@ import sqlite3
 
 import pandas as pd
 
-from utils.config import config
+# 방금 만든 로거 가져오기
+from utils.logger import setup_logger
 
-logger = logging.getLogger(__name__)
+logger = setup_logger()
 
 
-def load_to_db() -> bool:
+def load_data(df: pd.DataFrame, db_name="data/lol_data.db"):
     """
-    Load Processed Data (CSV) into SQLite Database.
-
-    This function ensures idempotency by using the 'replace' strategy.
-    The table is dropped and recreated on every run to maintain a fresh state.
-
-    Returns:
-        bool: True if loading is successful, False otherwise.
+    전처리된 데이터를 SQLite DB 파일에 저장합니다.
     """
     try:
-        csv_path = config["path"]["processed_data"]
-        db_path = config["path"]["db_path"]
+        logger.info("[Load] Starting data loading to SQLite...")
 
-        if not os.path.exists(csv_path):
-            logger.error(f"[Load] Source CSV file not found: {csv_path}")
-            return False
+        # 1. 데이터가 비어있으면 스킵
+        if df.empty:
+            logger.warning("[Load] DataFrame is empty. Skipping load.")
+            return
 
-        # Load Data
-        df = pd.read_csv(csv_path)
+        # 2. 저장할 폴더가 없으면 생성
+        os.makedirs(os.path.dirname(db_name), exist_ok=True)
 
-        # Connect to Database (Creates file if not exists)
-        conn = sqlite3.connect(db_path)
+        # 3. SQLite DB 연결 (없으면 자동 생성됨)
+        conn = sqlite3.connect(db_name)
 
-        # Write to Table
-        table_name = "users"
-        df.to_sql(table_name, conn, if_exists="replace", index=False)
+        # 4. 데이터 저장 (테이블 이름: challenger_stats)
+        # if_exists='replace': 기존 데이터 지우고 새로 씀
+        df.to_sql("challenger_stats", conn, if_exists="replace", index=False)
 
         conn.close()
-
-        logger.info(
-            f"[Load] Successfully loaded {len(df)} records into '{table_name}' table."
-        )
-        return True
+        logger.info(f"[Load] Successfully loaded {len(df)} rows into '{db_name}'.")
 
     except Exception as e:
-        logger.exception(f"[Load] Database Operation Error: {e}")
-        return False
-
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    load_to_db()
+        logger.error(f"[Load] Failed to load data: {e}")
+        raise e

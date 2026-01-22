@@ -1,14 +1,18 @@
+# 비밀번호 파일 (절대 올리면 안 됨!!!)
 .env
 
+# 가상환경 폴더 (용량 큼, 올릴 필요 없음)
 venv/
 env/
 
+# 파이썬이 만드는 임시 파일 (쓰레기 파일)
 __pycache__/
 *.pyc
 
+# 옛날 DB 파일 (이제 PostgreSQL 쓰니까 필요 없음)
 *.db
 *.sqlite3
 
+# 맥(Mac) 사용자가 남기는 흔적
 .DS_Store
-
 .ipynb_checkpoints/

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  # 여기가 바로 데이터베이스(PostgreSQL)입니다
+  db:
+    image: postgres:13
+    container_name: lol_postgres
+    environment:
+      POSTGRES_USER: admin        # 아이디
+      POSTGRES_PASSWORD: password123 # 비밀번호
+      POSTGRES_DB: lol_analytics  # DB 이름
+    ports:
+      - "5432:5432"               # 포트 열어두기
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # 데이터가 날아가지 않게 저장
+
+volumes:
+  postgres_data:

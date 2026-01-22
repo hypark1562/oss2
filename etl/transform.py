@@ -1,86 +1,63 @@
-import json
 import logging
-import os
 
-import numpy as np
 import pandas as pd
-from sklearn.impute import KNNImputer
 
-from utils.config import config
-
+# 로거 설정
 logger = logging.getLogger(__name__)
 
 
-def process_data() -> bool:
+def transform_data(raw_data):
     """
-    Transform Raw Data (JSON) into Processed Data (CSV).
+    수집된 Raw Data(리스트)를 정제하여 분석 가능한 DataFrame으로 변환합니다.
 
-    Key Engineering Decisions:
-        1. PyArrow Backend: Optimized for memory efficiency and speed.
-        2. Data Leakage Prevention: Removed columns (e.g., gold_earned) that directly imply the game result.
-        3. KNN Imputation: Filled missing values based on user similarity (k-NN) rather than simple mean.
+    Args:
+        raw_data (list): extract 단계에서 넘겨받은 딕셔너리 리스트
 
     Returns:
-        bool: True if transformation is successful, False otherwise.
+        pd.DataFrame: 전처리가 완료된 데이터프레임
     """
-    logger.info("[Transform] Start processing pipeline...")
-
-    input_path = config["path"]["raw_data"]
-    output_path = config["path"]["processed_data"]
-    output_dir = os.path.dirname(output_path)
-
-    # Validation: Check if raw data exists
-    if not os.path.exists(input_path):
-        logger.error(f"[Transform] Input file not found: {input_path}")
-        return False
-
     try:
-        # 1. Load Data
-        with open(input_path, "r", encoding="utf-8") as f:
-            raw_data = json.load(f)
+        logger.info("[Transform] Starting data transformation...")
 
-        if "entries" not in raw_data:
-            logger.error("[Transform] Invalid JSON structure: 'entries' key missing")
-            return False
+        # 1. 데이터가 비어있는지 확인
+        if not raw_data:
+            raise ValueError("No data available to transform")
 
-        df = pd.DataFrame(raw_data["entries"])
+        # 2. Pandas DataFrame으로 변환
+        df = pd.DataFrame(raw_data)
 
-        # 2. Optimize Memory with PyArrow (Pandas 2.0+)
-        try:
-            df = df.convert_dtypes(dtype_backend="pyarrow")
-        except Exception as e:
-            logger.warning(
-                f"[Transform] PyArrow conversion failed, fallback to NumPy: {e}"
-            )
+        # 3. 불필요한 컬럼 제거 (필요한 것만 남기기)
+        # (API 버전에 따라 컬럼명이 다를 수 있으니, 주요 컬럼만 선택)
+        target_columns = [
+            "summonerId",
+            "summonerName",
+            "leaguePoints",
+            "wins",
+            "losses",
+            "veteran",
+            "inactive",
+            "freshBlood",
+            "hotStreak",
+        ]
 
-        # 3. Remove Data Leakage Columns
-        leakage_cols = ["gold_earned", "total_damage"]
-        cols_to_drop = [c for c in leakage_cols if c in df.columns]
-        if cols_to_drop:
-            df = df.drop(columns=cols_to_drop)
+        # 실제 데이터에 있는 컬럼만 골라내기 (에러 방지)
+        available_cols = [col for col in target_columns if col in df.columns]
+        df = df[available_cols]
 
-        # 4. Handle Missing Values (KNN Imputation)
-        numeric_cols = df.select_dtypes(include=["number"]).columns
-        if len(df) > 5 and len(numeric_cols) > 0:
-            k = config["settings"]["knn_neighbors"]
-            imputer = KNNImputer(n_neighbors=k)
+        # 4. 파생 변수 생성 (Feature Engineering) - 승률 계산
+        # 승률 = 승리 / (승리 + 패배) * 100
+        df["totalGames"] = df["wins"] + df["losses"]
+        df["winRate"] = round((df["wins"] / df["totalGames"]) * 100, 2)
 
-            # Convert to numpy for performance
-            df[numeric_cols] = imputer.fit_transform(df[numeric_cols].to_numpy())
-            logger.info(f"[Integrity] Imputed missing values using KNN (k={k})")
+        # 5. 결측치 처리 (혹시 모를 빈 값 채우기)
+        df = df.fillna(0)
 
-        # 5. Save Processed Data
-        os.makedirs(output_dir, exist_ok=True)
-        df.to_csv(output_path, index=False)
+        # 6. 점수 높은 순으로 정렬
+        df = df.sort_values(by="leaguePoints", ascending=False).reset_index(drop=True)
 
-        logger.info(f"[Transform] Data cleaning completed: {output_path}")
-        return True
+        logger.info(f"[Transform] Successfully processed {len(df)} rows.")
+        return df
 
     except Exception as e:
-        logger.exception(f"[Transform] Critical Processing Error: {e}")
-        return False
-
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    process_data()
+        logger.error(f"[Transform] Error during transformation: {e}")
+        raise e

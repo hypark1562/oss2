@@ -1,29 +1,45 @@
 import os
+import sqlite3
 
 import pandas as pd
-from dotenv import load_dotenv
-from sqlalchemy import create_engine
-
-# 환경변수 로드
-load_dotenv()
 
 
-def check_data():
-    # DB 연결
-    db_url = os.getenv("DB_URL")  # sqlite:///lol_data.db
-    engine = create_engine(db_url)
+def check_database():
+    # 1. DB 파일 위치 (load.py에서 설정한 경로)
+    db_path = "data/lol_data.db"
 
+    # 파일이 실제로 있는지부터 확인
+    if not os.path.exists(db_path):
+        print(f"실패: DB 파일이 없습니다! ({db_path})")
+        return
+
+    print(f"DB 파일 발견: {db_path}")
+
+    # 2. DB 연결
     try:
-        # SQL 쿼리로 데이터 5줄만 가져오기
-        df = pd.read_sql("SELECT * FROM matches LIMIT 5", con=engine)
+        conn = sqlite3.connect(db_path)
 
-        print("\n📊 [DB 데이터 확인 (상위 5개)]")
-        print(df)
-        print("\n✅ 데이터가 정상적으로 저장되어 있습니다!")
+        # 3. 데이터 조회 (SQL 쿼리)
+        query = "SELECT * FROM challenger_stats"
+        df = pd.read_sql(query, conn)
+
+        conn.close()
+
+        # 4. 결과 출력
+        print("\n" + "=" * 40)
+        print(f"저장된 데이터 개수: {len(df)}개")
+        print("=" * 40)
+
+        if len(df) > 0:
+            print("\n상위 5개 데이터 미리보기:")
+            print(df.head().to_string())  # 예쁘게 출력
+            print("\n검증 완료: 데이터가 정상적으로 적재되었습니다.")
+        else:
+            print("\n경고: 테이블은 있지만 데이터가 0개입니다.")
 
     except Exception as e:
-        print(f"\n❌ 데이터를 읽을 수 없습니다. 테이블이 없는 것 같아요.\n에러: {e}")
+        print(f"\n❌ DB 읽기 실패: {e}")
 
 
 if __name__ == "__main__":
-    check_data()
+    check_database()

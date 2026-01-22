@@ -1,63 +1,56 @@
 import logging
 import os
-import sys
-from logging.handlers import RotatingFileHandler
 
-# Force UTF-8 encoding for Windows compatibility (Must be at the top)
-sys.stdout.reconfigure(encoding="utf-8")
+from dotenv import load_dotenv
 
-# Import ETL Modules
-from etl.extract import get_challenger_league
-from etl.load import load_to_db
-from etl.transform import process_data
+# 기존 모듈들
+from etl.extract import extract_data
+from etl.load import load_data
+from etl.transform import transform_data
+# 우리가 방금 만든 알림 함수 가져오기
+from utils.alert import send_slack_alert
+from utils.logger import setup_logger
 
-# Ensure log directory exists
-os.makedirs("logs", exist_ok=True)
+# 환경변수 로드 (.env 파일 읽기)
+load_dotenv()
 
-# Centralized Logging Configuration
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        RotatingFileHandler(
-            "logs/etl.log",
-            maxBytes=10 * 1024 * 1024,  # 10MB Limit
-            backupCount=5,  # Keep last 5 files
-            encoding="utf-8",
-        ),
-    ],
-)
-logger = logging.getLogger("ETL_Orchestrator")
+# 로거 설정
+logger = setup_logger()
 
 
-def run_pipeline():
-    """
-    Execute the full ETL Pipeline.
+def main():
+    try:
+        # [시작 알림] 파이프라인 시작한다고 슬랙에 보고
+        logger.info("ETL Pipeline Started...")
+        send_slack_alert("ETL 파이프라인이 작업을 시작했습니다. 🏃‍♂️", level="INFO")
 
-    Strategy: Fail-Fast
-    If any stage (Extract, Transform, Load) fails, the pipeline halts immediately
-    to prevent data corruption or downstream errors.
-    """
-    logger.info("========== [ETL Pipeline] Started ==========")
+        # 1. Extract (데이터 수집)
+        logger.info("Step 1: Extracting data from Riot API...")
+        raw_data = extract_data()
 
-    # Step 1: Extract
-    if not get_challenger_league():
-        logger.error("[ETL Pipeline] Halted: Extract phase failed.")
-        return
+        # 2. Transform (데이터 변환)
+        logger.info("Step 2: Transforming data...")
+        clean_df = transform_data(raw_data)
 
-    # Step 2: Transform
-    if not process_data():
-        logger.error("[ETL Pipeline] Halted: Transform phase failed.")
-        return
+        # 3. Load (데이터 적재)
+        logger.info("Step 3: Loading data into Database...")
+        load_data(clean_df)
 
-    # Step 3: Load
-    if not load_to_db():
-        logger.error("[ETL Pipeline] Halted: Load phase failed.")
-        return
+        # [성공 알림] 다 끝났으면 성공했다고 보고
+        logger.info("ETL Pipeline Completed Successfully.")
+        send_slack_alert(
+            f"ETL 작업 성공! 총 {len(clean_df)}건의 데이터가 저장되었습니다. 🎉", level="INFO"
+        )
 
-    logger.info("========== [ETL Pipeline] Completed Successfully ==========")
+    except Exception as e:
+        # [실패 알림] 에러 나면 즉시 빨간색 알림 발송!
+        logger.error(f"ETL Pipeline Failed: {e}")
+        error_message = f"작업 중 심각한 에러가 발생했습니다.\n에러 내용: {str(e)}"
+        send_slack_alert(error_message, level="ERROR")
+
+        # 프로그램 비정상 종료 처리
+        raise e
 
 
 if __name__ == "__main__":
-    run_pipeline()
+    main()
