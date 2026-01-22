@@ -1,6 +1,9 @@
 # LoL Challenger Data Pipeline
 
-[Python 3.9+] [Code Style: Black] [License: MIT]
+![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
+![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Build Status](https://github.com/hypark1562/oss2/actions/workflows/ci.yml/badge.svg)
 
 An End-to-End data pipeline that collects, transforms, loads, and visualizes League of Legends Challenger tier data using the Riot API.
 
@@ -10,26 +13,26 @@ An End-to-End data pipeline that collects, transforms, loads, and visualizes Lea
 
 ```mermaid
 graph LR
-    %% 노드 정의
+    %% Node Definition
     A[Riot API]
     B(Raw Data <br/> JSON)
     C{Data Processing <br/> Pandas/PyArrow}
     D[(SQLite DB)]
     E[Streamlit <br/> Dashboard]
 
-    %% 데이터 흐름
+    %% Data Flow
     A -->|Extract| B
     B -->|Transform| C
     C -->|Load| D
     C -->|Visualize| E
 
-    %% CI/CD 파이프라인 표시
+    %% CI/CD Pipeline
     subgraph DevOps [Automated Pipeline]
         F[GitHub Actions] -.->|Test & Lint| C
         G[Docker] -.->|Build| E
     end
 
-    %% 스타일링 (색상 입히기)
+    %% Styling
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style C fill:#bbf,stroke:#333,stroke-width:2px
     style D fill:#ff9,stroke:#333,stroke-width:2px
@@ -40,11 +43,11 @@ graph LR
 
 ## Key Features
 
-- Automated ETL Pipeline: Full automation using Python scripts.
-- Enterprise Logging: Implemented RotatingFileHandler for log management.
-- Data Integrity: KNN Imputation for missing values and leakage prevention.
-- DevOps Standards: Makefile for build automation and pre-commit hooks.
-- Config Management: Centralized YAML configuration.
+- **Automated ETL Pipeline:** Full automation using Python scripts.
+- **Enterprise Logging:** Implemented `RotatingFileHandler` for log management.
+- **Data Integrity:** KNN Imputation for missing values and leakage prevention.
+- **DevOps Standards:** `Makefile` for build automation and pre-commit hooks.
+- **Config Management:** Centralized YAML configuration.
 
 ---
 
@@ -52,19 +55,31 @@ graph LR
 
 ### 1. Installation
 Run the following command to install dependencies:
-$ make install
+```bash
+make install
+```
 
 ### 2. Configuration
-Create a .env file and add your Riot API key:
+Create a `.env` file and add your Riot API key:
+```env
 RIOT_API_KEY=your_api_key_here
+```
 
 ### 3. Execution
 Run the full ETL pipeline:
-$ make run
+```bash
+make run
+```
 
 ### 4. Dashboard
 Launch the analytics dashboard:
-$ make dashboard
+```bash
+make dashboard
+```
+
+#### Dashboard Preview
+![Dashboard Preview](dashboard_preview.png)
+> **Snapshot:** Challenger Tier players' win-rate distribution and correlation analysis.
 
 ---
 
@@ -91,8 +106,8 @@ lol-data-pipeline/
 ├── README.md            # Project Overview & Documentation
 └── requirements.txt     # Python Dependencies
 ```
-![Dashboard Preview](dashboard_preview.png)
-> **Snapshot:** Challenger Tier players' win-rate distribution and correlation analysis.
+
+---
 
 ## Data Schema (ERD)
 
