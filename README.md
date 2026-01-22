@@ -54,3 +54,7 @@ $ make dashboard
 ├── config.yaml         # Centralized Configuration
 ├── Makefile            # Build Commands
 └── README.md           # Project Documentation
+
+## Data Schema (ERD)
+
+![ERD Structure](erd.png)
