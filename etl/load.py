@@ -1,3 +1,9 @@
+"""
+Module: load.py
+Persists transformed data to PostgreSQL.
+Engine: SQLAlchemy for connection pooling and ORM compatibility.
+"""
+
 import os
 import logging
 import pandas as pd
@@ -16,11 +22,6 @@ def _get_engine():
     db = os.getenv("DB_NAME", "lol_analytics")
     return create_engine(f"postgresql://{user}:{pw}@{host}:{port}/{db}")
 
-"""
-Module: load.py
-Persists transformed data to PostgreSQL.
-Engine: SQLAlchemy for connection pooling and ORM compatibility.
-"""
 
 def load_data(df):
     """

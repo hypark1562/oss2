@@ -1,3 +1,9 @@
+"""
+Module: main.py
+Description: Entry point for LoL Data Pipeline.
+             Orchestrates ETL phases and manages global exception handling.
+"""
+
 import sys
 import logging
 from etl.extract import extract_data
@@ -8,11 +14,6 @@ from utils.logger import setup_logger
 
 logger = setup_logger()
 
-"""
-Module: main.py
-Description: Entry point for LoL Data Pipeline.
-             Orchestrates ETL phases and manages global exception handling.
-"""
 
 def run_pipeline():
     """
@@ -46,3 +47,7 @@ def run_pipeline():
         logger.error(f"Execution Error: {str(e)}", exc_info=True)
         send_slack_alert(f"Pipeline Failure: {type(e).__name__}", level="ERROR")
         sys.exit(1)
+
+if __name__ == "__main__":
+    print("!!! Pipeline execution started directly !!!") # 이 글자가 뜨는지 확인
+    run_pipeline()

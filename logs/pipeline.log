@@ -19,3 +19,22 @@
 2026-01-22 20:39:20,013 - INFO - [Load] Starting data loading to SQLite...
 2026-01-22 20:39:20,028 - INFO - [Load] Successfully loaded 300 rows into 'data/lol_data.db'.
 2026-01-22 20:39:20,028 - INFO - ETL Pipeline Completed Successfully.
+2026-01-22 21:08:42,812 - INFO - Initializing ETL Pipeline...
+2026-01-22 21:08:44,407 - ERROR - Execution Error: "['summonerName'] not in index"
+Traceback (most recent call last):
+  File "C:\Users\user\OneDrive\바탕 화면\lol-data-pipeline\main.py", line 33, in run_pipeline
+    clean_df = transform_data(raw_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\OneDrive\바탕 화면\lol-data-pipeline\etl\transform.py", line 31, in transform_data
+    df = df[list(schema.keys())].rename(columns=schema)
+         ~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\OneDrive\바탕 화면\lol-data-pipeline\venv\Lib\site-packages\pandas\core\frame.py", line 4119, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\OneDrive\바탕 화면\lol-data-pipeline\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6212, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "C:\Users\user\OneDrive\바탕 화면\lol-data-pipeline\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6264, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['summonerName'] not in index"
+2026-01-22 21:12:25,249 - INFO - Initializing ETL Pipeline...
+2026-01-22 21:12:27,220 - INFO - Pipeline execution completed. Records: 300

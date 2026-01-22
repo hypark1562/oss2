@@ -28,9 +28,9 @@
         },
         {
             "puuid": "8XNGv5dCqGrjDD8Gk3Yzfw6hMr_XD6rOw_4rUMgVKx59feqgc3VXsjYInBfkEL8Amg24Xr9e2pJSkw",
-            "leaguePoints": 1645,
+            "leaguePoints": 1662,
             "rank": "I",
-            "wins": 118,
+            "wins": 119,
             "losses": 84,
             "veteran": true,
             "inactive": false,
@@ -61,21 +61,10 @@
         },
         {
             "puuid": "ehRIMXR658hPTFD0SVrLSyrYYNCPvVThKxIn-7oPvCGpYTHShP1NzOBeL27WI2S5dlv9oDdDZL5-rw",
-            "leaguePoints": 1578,
+            "leaguePoints": 1555,
             "rank": "I",
             "wins": 133,
-            "losses": 103,
-            "veteran": true,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "9jsbg5K9abDGniQQ_3_MlQWCyq1MUm2X30B86l1CdMNevX_THdx7p4o4mV23vFj01lOD_dB8QTSzxg",
-            "leaguePoints": 1546,
-            "rank": "I",
-            "wins": 127,
-            "losses": 86,
+            "losses": 104,
             "veteran": true,
             "inactive": false,
             "freshBlood": false,
@@ -91,6 +80,17 @@
             "inactive": false,
             "freshBlood": false,
             "hotStreak": true
+        },
+        {
+            "puuid": "9jsbg5K9abDGniQQ_3_MlQWCyq1MUm2X30B86l1CdMNevX_THdx7p4o4mV23vFj01lOD_dB8QTSzxg",
+            "leaguePoints": 1523,
+            "rank": "I",
+            "wins": 127,
+            "losses": 87,
+            "veteran": true,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
         },
         {
             "puuid": "gz1mMAWg_mpgTBf3FrGnXHxjyO5h5Uk0KA4RrQw3DyXW_1pTunigs_4ZVk50Y1JzggssC_DxGfj7tg",
@@ -127,9 +127,9 @@
         },
         {
             "puuid": "gxsQIzjxt19ESfVIlrayi_UqmqlMLvJRaaVdgJEZjL9MKRIUVOl1fpaDKyzPlUxihV27FIGVOl9PTQ",
-            "leaguePoints": 1426,
+            "leaguePoints": 1445,
             "rank": "I",
-            "wins": 134,
+            "wins": 135,
             "losses": 82,
             "veteran": true,
             "inactive": false,
@@ -214,6 +214,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "McUmmNilnv6CgIfhaqnj5eoyPd6H1NnxykBwFGySq8SkkR5b83FmYXukmVphsBqDkOXR5BjmAv8MaQ",
+            "leaguePoints": 1301,
+            "rank": "I",
+            "wins": 131,
+            "losses": 91,
+            "veteran": true,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
             "puuid": "XH1fLevlH4v42WghiEU3A0zqQEmFbiavNXKhrU5PBfrHZQgRGQ-n1UPQfrn4Hc61tQJoKiDGJgXC4Q",
             "leaguePoints": 1290,
             "rank": "I",
@@ -231,17 +242,6 @@
             "wins": 72,
             "losses": 46,
             "veteran": false,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "McUmmNilnv6CgIfhaqnj5eoyPd6H1NnxykBwFGySq8SkkR5b83FmYXukmVphsBqDkOXR5BjmAv8MaQ",
-            "leaguePoints": 1282,
-            "rank": "I",
-            "wins": 130,
-            "losses": 91,
-            "veteran": true,
             "inactive": false,
             "freshBlood": false,
             "hotStreak": false
@@ -273,21 +273,10 @@
             "leaguePoints": 1274,
             "rank": "I",
             "wins": 88,
-            "losses": 65,
+            "losses": 66,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
-            "hotStreak": false
-        },
-        {
-            "puuid": "SH4KLd4IhA6qE0RIv4ucoXy86LM7khGy68Arzz3c3U8oDkX6C0UskZLl9EJTWyfu9nmCt32lvG4M7A",
-            "leaguePoints": 1255,
-            "rank": "I",
-            "wins": 115,
-            "losses": 84,
-            "veteran": true,
-            "inactive": false,
-            "freshBlood": false,
             "hotStreak": false
         },
         {
@@ -401,11 +390,11 @@
             "hotStreak": false
         },
         {
-            "puuid": "XQ_yI7fdddLl9GaiME0SHP87q9Z4SU9tPbKfW7lT8QhAJEhfr-NHWprqriRlHn6MRxMg7DqiC_i9EQ",
+            "puuid": "SH4KLd4IhA6qE0RIv4ucoXy86LM7khGy68Arzz3c3U8oDkX6C0UskZLl9EJTWyfu9nmCt32lvG4M7A",
             "leaguePoints": 1233,
             "rank": "I",
-            "wins": 105,
-            "losses": 100,
+            "wins": 115,
+            "losses": 85,
             "veteran": true,
             "inactive": false,
             "freshBlood": false,
@@ -428,6 +417,17 @@
             "rank": "I",
             "wins": 132,
             "losses": 98,
+            "veteran": true,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
+            "puuid": "XQ_yI7fdddLl9GaiME0SHP87q9Z4SU9tPbKfW7lT8QhAJEhfr-NHWprqriRlHn6MRxMg7DqiC_i9EQ",
+            "leaguePoints": 1213,
+            "rank": "I",
+            "wins": 105,
+            "losses": 101,
             "veteran": true,
             "inactive": false,
             "freshBlood": false,
@@ -533,6 +533,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "wIFl30K-HB8De-wHdbOmgOnkOMWkJqcDzOCZZUuIUo-_BJ4vEJQtPBt_K1lwmtXEDJuAQviqHIuGAg",
+            "leaguePoints": 1186,
+            "rank": "I",
+            "wins": 152,
+            "losses": 108,
+            "veteran": true,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
             "puuid": "mi6XzYklSfwjbbg1RS-H7-fsIRSPTMnByJ47GS5o6sLLOZO-qjpsKkkbo5Mjru6vD75iapeSgcadCA",
             "leaguePoints": 1186,
             "rank": "I",
@@ -599,17 +610,6 @@
             "hotStreak": false
         },
         {
-            "puuid": "wIFl30K-HB8De-wHdbOmgOnkOMWkJqcDzOCZZUuIUo-_BJ4vEJQtPBt_K1lwmtXEDJuAQviqHIuGAg",
-            "leaguePoints": 1168,
-            "rank": "I",
-            "wins": 151,
-            "losses": 108,
-            "veteran": true,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": false
-        },
-        {
             "puuid": "i7atT3Mt78wOjWvPv4TQu_y2GoiC060Z-gkTWkdAPOaXpg_l_nGRQ64K_1L8-kAiCrKL1T7PIRTbQA",
             "leaguePoints": 1158,
             "rank": "I",
@@ -654,17 +654,6 @@
             "hotStreak": false
         },
         {
-            "puuid": "bngFRuc7qPhpQESrf6EkEZDPb3GBfl34YEQu0ddcHaIgvtEykkHhFjtxevUcZ3GV2uApooYaN4ZsJA",
-            "leaguePoints": 1153,
-            "rank": "I",
-            "wins": 110,
-            "losses": 88,
-            "veteran": true,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": false
-        },
-        {
             "puuid": "rFRgf-FathWlJqHIuzOK5chYDU0yGjTfB5yiAHv-YJ8dxVrL71GcWt7Kt_sDPRC0DpmgZVpBsTcffQ",
             "leaguePoints": 1151,
             "rank": "I",
@@ -698,6 +687,28 @@
             "hotStreak": false
         },
         {
+            "puuid": "9D3t0ocb5P__x_Vqazc1UuhbCWq8-i93GRh_x8eiIsEKh6HQefH25rQN6A_e1BjU_KfVSdmjcjy4Tw",
+            "leaguePoints": 1144,
+            "rank": "I",
+            "wins": 103,
+            "losses": 77,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
+            "puuid": "-34To1qdN4kh5s5zD1ky66x45P0FXZ_sLGIysHxR-aPQl4MRatWxvdxEBH30ciE0-c-8IE1KuzUkyw",
+            "leaguePoints": 1142,
+            "rank": "I",
+            "wins": 111,
+            "losses": 69,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": true
+        },
+        {
             "puuid": "2MjCwDN0y1-xKUjB4zZPMnWA_hpqhwPulevFS1TuJQxZx-Kl2Q04S09iJSlGvH_sRANmGtey2uF8OQ",
             "leaguePoints": 1139,
             "rank": "I",
@@ -709,11 +720,11 @@
             "hotStreak": false
         },
         {
-            "puuid": "JYITRDE318RTPkRFW8Lor3wxzOXUI_lPJvSDk_fLfqx4rf9ulkYvOIUt09CDSY-TLGwnd1KJewapig",
-            "leaguePoints": 1136,
+            "puuid": "Vspj0noMd30U_tD8TFwexTghQj6BJeY23ZMxXf8RI7nmT7D3iFPaYVLvoFjL2fs2vaEStxVg8Ot7Jw",
+            "leaguePoints": 1137,
             "rank": "I",
-            "wins": 106,
-            "losses": 85,
+            "wins": 95,
+            "losses": 55,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -753,6 +764,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "bngFRuc7qPhpQESrf6EkEZDPb3GBfl34YEQu0ddcHaIgvtEykkHhFjtxevUcZ3GV2uApooYaN4ZsJA",
+            "leaguePoints": 1132,
+            "rank": "I",
+            "wins": 110,
+            "losses": 89,
+            "veteran": true,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
             "puuid": "QvD58HU1d3hFX9CZKW_IFhNc0jFoYrm-tEopTvx4V6iqkF1qMsvuFw-xiSFjYUoLDOj9DGsab1k3Lw",
             "leaguePoints": 1132,
             "rank": "I",
@@ -762,6 +784,17 @@
             "inactive": false,
             "freshBlood": false,
             "hotStreak": false
+        },
+        {
+            "puuid": "vlXvMAyostPq3KywYtHpmrMeGiy83tR87QKwdOzaxvaishbx5E6TjxCsiEJQC27AbjTWVs8vu3zHIg",
+            "leaguePoints": 1129,
+            "rank": "I",
+            "wins": 89,
+            "losses": 81,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": true
         },
         {
             "puuid": "GoxUrpBB_bLzjLE6IWzhyteo4kifup48sTEGZm45azOBp_hyhSjCcrn9F6DnBwu1DylplWDw7bNSAQ",
@@ -775,33 +808,11 @@
             "hotStreak": false
         },
         {
-            "puuid": "9D3t0ocb5P__x_Vqazc1UuhbCWq8-i93GRh_x8eiIsEKh6HQefH25rQN6A_e1BjU_KfVSdmjcjy4Tw",
-            "leaguePoints": 1126,
-            "rank": "I",
-            "wins": 102,
-            "losses": 77,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "NRFRTgUuo5pMzgHA5gr4MgsXoLNGVNXR8h5kEwxKr1HQYbybF2UoE5vIYup4V9xrd7uBoqoetfWIDA",
             "leaguePoints": 1124,
             "rank": "I",
             "wins": 82,
             "losses": 54,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": true
-        },
-        {
-            "puuid": "-34To1qdN4kh5s5zD1ky66x45P0FXZ_sLGIysHxR-aPQl4MRatWxvdxEBH30ciE0-c-8IE1KuzUkyw",
-            "leaguePoints": 1122,
-            "rank": "I",
-            "wins": 110,
-            "losses": 69,
             "veteran": false,
             "inactive": false,
             "freshBlood": false,
@@ -841,17 +852,6 @@
             "hotStreak": false
         },
         {
-            "puuid": "Vspj0noMd30U_tD8TFwexTghQj6BJeY23ZMxXf8RI7nmT7D3iFPaYVLvoFjL2fs2vaEStxVg8Ot7Jw",
-            "leaguePoints": 1118,
-            "rank": "I",
-            "wins": 94,
-            "losses": 55,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "X1STsO6ckgRmJsfNCOW28tSqH_B0KZ14tGV9JJ_VI09Tq49mdjLs900MBEbTDfPGH_5h1-I8E_E5FQ",
             "leaguePoints": 1117,
             "rank": "I",
@@ -861,6 +861,17 @@
             "inactive": false,
             "freshBlood": true,
             "hotStreak": false
+        },
+        {
+            "puuid": "f5H6WVW6pftsBZJlAJBkqlVVG2saegECIrPxLcZYeH41FdtDEy2Ee7TxXcr2krVsonglELYOG9tJUg",
+            "leaguePoints": 1116,
+            "rank": "I",
+            "wins": 99,
+            "losses": 81,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": true
         },
         {
             "puuid": "L_WRa7RTAFV9SI_U7ZXEf6YvAq9oHZsn9GaQKJn7xvG-zaK6_xy_f47D1aiy8sxwUXICVQktbcCbsA",
@@ -885,6 +896,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "JYITRDE318RTPkRFW8Lor3wxzOXUI_lPJvSDk_fLfqx4rf9ulkYvOIUt09CDSY-TLGwnd1KJewapig",
+            "leaguePoints": 1115,
+            "rank": "I",
+            "wins": 106,
+            "losses": 86,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
             "puuid": "zcFFdgG2FVd-FLFYjY-kOvCsTTkrbz9-kAGDRF6vBw9UKbkVzEbsYH2803b2hQs-9l1meJlKmgJEWg",
             "leaguePoints": 1115,
             "rank": "I",
@@ -896,25 +918,25 @@
             "hotStreak": false
         },
         {
+            "puuid": "SzjvUDp5tD8_SWeGmj6BbiESvbwpVpfbjDnzAJ6WiPSzs8srQow5RkP5ge1_65MhrYCtt07QuQOdNw",
+            "leaguePoints": 1114,
+            "rank": "I",
+            "wins": 115,
+            "losses": 88,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
             "puuid": "p6LAmHjUCZ0xfKXdZbADqH33O3N543fCVnVpY8cMpuC3aE3FzRhBVqxQ2EllFM0PHaQ3KkH-wxwgeg",
             "leaguePoints": 1113,
             "rank": "I",
             "wins": 90,
-            "losses": 85,
+            "losses": 86,
             "veteran": true,
             "inactive": false,
             "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "wcVo4ms1uNo9gRqdiQEH54aB6Fka1xtu8Fei-ZIqyM_oMzPTTUXPV0NRq1bZS3RApu1-eQXu_j71Iw",
-            "leaguePoints": 1112,
-            "rank": "I",
-            "wins": 123,
-            "losses": 92,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
             "hotStreak": false
         },
         {
@@ -929,17 +951,6 @@
             "hotStreak": true
         },
         {
-            "puuid": "jTckU_DJTrrdS7kcuVHx4Mw8Su1QOt_w9H9BilMnNce1GN1uI0YJ8iWME1NTgjqwcsy-sqEx2J2Ojw",
-            "leaguePoints": 1112,
-            "rank": "I",
-            "wins": 117,
-            "losses": 94,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "9oUSz_1WcuV0F-EaTWDABGhrBZkEEcD56qgg9Z4b_UmVrRh3LytnMaqN4j0a8e5805t_MaTB1AdjkA",
             "leaguePoints": 1112,
             "rank": "I",
@@ -948,17 +959,6 @@
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
-            "hotStreak": false
-        },
-        {
-            "puuid": "BK0IICfMIEhvOjL4_yWc9euG0pmU8D4pG1rcgfodpkD8e8QxScU7aUv6wwrB58Y0r4sFzefZhpCoSg",
-            "leaguePoints": 1110,
-            "rank": "I",
-            "wins": 109,
-            "losses": 81,
-            "veteran": true,
-            "inactive": false,
-            "freshBlood": false,
             "hotStreak": false
         },
         {
@@ -971,17 +971,6 @@
             "inactive": false,
             "freshBlood": false,
             "hotStreak": false
-        },
-        {
-            "puuid": "vlXvMAyostPq3KywYtHpmrMeGiy83tR87QKwdOzaxvaishbx5E6TjxCsiEJQC27AbjTWVs8vu3zHIg",
-            "leaguePoints": 1108,
-            "rank": "I",
-            "wins": 88,
-            "losses": 81,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": true
         },
         {
             "puuid": "lWSzRGUR-B-vjxqgdk8-84oR2kk_NqAgm5NrFrR9fhkzOO1muhqIlwpDpKF3IGw1mZkeJfuo8yk_Dw",
@@ -1105,17 +1094,6 @@
             "hotStreak": true
         },
         {
-            "puuid": "SzjvUDp5tD8_SWeGmj6BbiESvbwpVpfbjDnzAJ6WiPSzs8srQow5RkP5ge1_65MhrYCtt07QuQOdNw",
-            "leaguePoints": 1099,
-            "rank": "I",
-            "wins": 114,
-            "losses": 88,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "dyWAt7tfSHxaUfmX4q6pqTLp2lR4aS_BrxF91iF1PBWvG_X7segzkO73Ntf9UY_JCIZE4xgjujoklw",
             "leaguePoints": 1099,
             "rank": "I",
@@ -1135,6 +1113,17 @@
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
+            "hotStreak": true
+        },
+        {
+            "puuid": "rb0sqhQ2F_Sa9h5E_3z2f7OfIKj0k9p0jhZgMzfKLOfCm1frSMSdD6l6QibarQIcJDo2Ihd8OYd3Pw",
+            "leaguePoints": 1098,
+            "rank": "I",
+            "wins": 106,
+            "losses": 82,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": false,
             "hotStreak": true
         },
         {
@@ -1168,17 +1157,6 @@
             "veteran": true,
             "inactive": false,
             "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "f5H6WVW6pftsBZJlAJBkqlVVG2saegECIrPxLcZYeH41FdtDEy2Ee7TxXcr2krVsonglELYOG9tJUg",
-            "leaguePoints": 1097,
-            "rank": "I",
-            "wins": 98,
-            "losses": 81,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
             "hotStreak": false
         },
         {
@@ -1237,6 +1215,17 @@
             "hotStreak": true
         },
         {
+            "puuid": "SKIADEfyDR7H-u1JYjoziw4KApO3KY7-PUVU12RM_oyzPKU6GoqCP9dCLEILxv3pKqA3br0iRr9uAQ",
+            "leaguePoints": 1094,
+            "rank": "I",
+            "wins": 76,
+            "losses": 66,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": true
+        },
+        {
             "puuid": "54Y6Ozn9jEYy1tKGdmLA-0E803YTRhphSp1MEaPBBGtGdZ822SOHoUGw0zdjWy-hiGKWxWpQaO1dfw",
             "leaguePoints": 1094,
             "rank": "I",
@@ -1259,26 +1248,37 @@
             "hotStreak": false
         },
         {
-            "puuid": "CFoFCKdQy0a2mbmXBndJZDQ_A7X9eWwL7hI1Wbu9aDYz2xancfGXCPRh3UHymdJPFUAUdgBLVwsM9A",
-            "leaguePoints": 1089,
+            "puuid": "wcVo4ms1uNo9gRqdiQEH54aB6Fka1xtu8Fei-ZIqyM_oMzPTTUXPV0NRq1bZS3RApu1-eQXu_j71Iw",
+            "leaguePoints": 1090,
             "rank": "I",
-            "wins": 97,
-            "losses": 74,
+            "wins": 123,
+            "losses": 93,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
             "hotStreak": false
         },
         {
-            "puuid": "nQ15nxp0rAAPHs_2PFaC8CnD_pwYYM0CDP09IkPmgP_ebdas4EEgb09xu40bGwL9pmB-BB-3He-lyQ",
-            "leaguePoints": 1089,
+            "puuid": "jTckU_DJTrrdS7kcuVHx4Mw8Su1QOt_w9H9BilMnNce1GN1uI0YJ8iWME1NTgjqwcsy-sqEx2J2Ojw",
+            "leaguePoints": 1088,
             "rank": "I",
-            "wins": 90,
-            "losses": 70,
+            "wins": 117,
+            "losses": 95,
             "veteran": false,
             "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
+            "puuid": "BK0IICfMIEhvOjL4_yWc9euG0pmU8D4pG1rcgfodpkD8e8QxScU7aUv6wwrB58Y0r4sFzefZhpCoSg",
+            "leaguePoints": 1088,
+            "rank": "I",
+            "wins": 109,
+            "losses": 82,
+            "veteran": true,
+            "inactive": false,
             "freshBlood": false,
-            "hotStreak": true
+            "hotStreak": false
         },
         {
             "puuid": "cgkuE3mZX6ueotZPs7yrmujkdQt3v4SLDq1JbAU4fCDqCmh2Aei-aPQUCJ2wcz-Bd2fLbRW_x9RktQ",
@@ -1303,36 +1303,25 @@
             "hotStreak": false
         },
         {
-            "puuid": "rb0sqhQ2F_Sa9h5E_3z2f7OfIKj0k9p0jhZgMzfKLOfCm1frSMSdD6l6QibarQIcJDo2Ihd8OYd3Pw",
-            "leaguePoints": 1082,
-            "rank": "I",
-            "wins": 105,
-            "losses": 82,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "Y1CWBx3iEUsvT4BNc4voE2_PfpXRpoBtjKjuH_3v5DNmO7pTdW8uUeX8nmeFGSIpQP89wRL50M5hxA",
+            "puuid": "qZlw-MXP3S3Mw-BfRjiHDNDxZd5xO-c6vn63lWojG5WfR7XJnn0Cu2tZ46KYMMfr4YYrhU9KgohxJw",
             "leaguePoints": 1081,
             "rank": "I",
-            "wins": 117,
-            "losses": 102,
-            "veteran": true,
+            "wins": 86,
+            "losses": 58,
+            "veteran": false,
             "inactive": false,
-            "freshBlood": false,
+            "freshBlood": true,
             "hotStreak": false
         },
         {
-            "puuid": "OYFo_MycNoydWtXipSOpq8yA9f5NnbcBS5Mgq3_Ids2DZTdvhZIuQMwRIMEHxBjNTak88eNB-E0FwQ",
+            "puuid": "59_N6l3FG-OCYycmxaMqJ5GAK-BlvnbZS_B1qaO-M38c2OP3CIxLTuH53keCFibVjqYWPQWbu3GI0Q",
             "leaguePoints": 1080,
             "rank": "I",
-            "wins": 128,
-            "losses": 89,
-            "veteran": true,
+            "wins": 84,
+            "losses": 54,
+            "veteran": false,
             "inactive": false,
-            "freshBlood": false,
+            "freshBlood": true,
             "hotStreak": false
         },
         {
@@ -1358,6 +1347,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "VCqrXqMCttzZeZocXLPyXoQ6vy-_24JiIlZocHkQLH__pdvD1fbPeAZ5fqQNkTEAjEvm2ItROL_J3A",
+            "leaguePoints": 1075,
+            "rank": "I",
+            "wins": 100,
+            "losses": 73,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": true
+        },
+        {
             "puuid": "iMt3X04THeQhekL0nd_8eCLpKOjtbpeoOgKYGNW8urcgrCpdEhIqa7PpXMVBESBvTCQJM0ENCzPS9g",
             "leaguePoints": 1075,
             "rank": "I",
@@ -1380,44 +1380,11 @@
             "hotStreak": false
         },
         {
-            "puuid": "hoi2jbBAx4CFmWfNNmisor4Ja9RySpeJgRBKlVjtif5Z7iCaGT1InkuhHer-Ly0XTnJtLhQqtnuhWQ",
-            "leaguePoints": 1074,
+            "puuid": "CFoFCKdQy0a2mbmXBndJZDQ_A7X9eWwL7hI1Wbu9aDYz2xancfGXCPRh3UHymdJPFUAUdgBLVwsM9A",
+            "leaguePoints": 1067,
             "rank": "I",
-            "wins": 91,
-            "losses": 58,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": true
-        },
-        {
-            "puuid": "movcmBHw0D87NB0sJq2nYK915DfFCHQG6edujb0H5hwvymWfx8cedLx_GmLjOp4qAfQPveZmVBb1OQ",
-            "leaguePoints": 1071,
-            "rank": "I",
-            "wins": 99,
-            "losses": 81,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "SKIADEfyDR7H-u1JYjoziw4KApO3KY7-PUVU12RM_oyzPKU6GoqCP9dCLEILxv3pKqA3br0iRr9uAQ",
-            "leaguePoints": 1071,
-            "rank": "I",
-            "wins": 75,
-            "losses": 66,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": true
-        },
-        {
-            "puuid": "E8RTZqEjD4UGpvAVKd_TQeIEO37l91FIUuUVuefyVdSwNagwXsuw06lllwKz5MJyLTJbwLlHoNHeNw",
-            "leaguePoints": 1069,
-            "rank": "I",
-            "wins": 103,
-            "losses": 85,
+            "wins": 97,
+            "losses": 75,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -1430,6 +1397,17 @@
             "wins": 150,
             "losses": 110,
             "veteran": true,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
+            "puuid": "nQ15nxp0rAAPHs_2PFaC8CnD_pwYYM0CDP09IkPmgP_ebdas4EEgb09xu40bGwL9pmB-BB-3He-lyQ",
+            "leaguePoints": 1066,
+            "rank": "I",
+            "wins": 90,
+            "losses": 71,
+            "veteran": false,
             "inactive": false,
             "freshBlood": false,
             "hotStreak": false
@@ -1501,28 +1479,6 @@
             "hotStreak": false
         },
         {
-            "puuid": "qZlw-MXP3S3Mw-BfRjiHDNDxZd5xO-c6vn63lWojG5WfR7XJnn0Cu2tZ46KYMMfr4YYrhU9KgohxJw",
-            "leaguePoints": 1061,
-            "rank": "I",
-            "wins": 85,
-            "losses": 58,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
-            "puuid": "59_N6l3FG-OCYycmxaMqJ5GAK-BlvnbZS_B1qaO-M38c2OP3CIxLTuH53keCFibVjqYWPQWbu3GI0Q",
-            "leaguePoints": 1061,
-            "rank": "I",
-            "wins": 83,
-            "losses": 54,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "aBDn4h9cVBPsqPsGqqtQgV-Hujk2QhjyxTAdXS9ciScmt4R0sNVvMSNxw1V5TChziBq9aqENFccPNA",
             "leaguePoints": 1061,
             "rank": "I",
@@ -1556,6 +1512,17 @@
             "hotStreak": true
         },
         {
+            "puuid": "OYFo_MycNoydWtXipSOpq8yA9f5NnbcBS5Mgq3_Ids2DZTdvhZIuQMwRIMEHxBjNTak88eNB-E0FwQ",
+            "leaguePoints": 1058,
+            "rank": "I",
+            "wins": 128,
+            "losses": 90,
+            "veteran": true,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
             "puuid": "VXCFzmQ4wpD6Mz3j47ZE6j5enlw_vibl2Fcln4uUnOhSbPiFnDrqnR97cgzFL8rORc3XuHlWkuoNOw",
             "leaguePoints": 1058,
             "rank": "I",
@@ -1578,14 +1545,14 @@
             "hotStreak": false
         },
         {
-            "puuid": "ho6plNrBi37W4HGaIis65DvZhYWJoQ9SQv0EHUQQySJZ52nnVjT8bYnmPWF6SD75vSWHHscjxVRQSg",
+            "puuid": "Y1CWBx3iEUsvT4BNc4voE2_PfpXRpoBtjKjuH_3v5DNmO7pTdW8uUeX8nmeFGSIpQP89wRL50M5hxA",
             "leaguePoints": 1057,
             "rank": "I",
-            "wins": 98,
-            "losses": 65,
-            "veteran": false,
+            "wins": 117,
+            "losses": 103,
+            "veteran": true,
             "inactive": false,
-            "freshBlood": true,
+            "freshBlood": false,
             "hotStreak": false
         },
         {
@@ -1644,6 +1611,17 @@
             "hotStreak": true
         },
         {
+            "puuid": "hoi2jbBAx4CFmWfNNmisor4Ja9RySpeJgRBKlVjtif5Z7iCaGT1InkuhHer-Ly0XTnJtLhQqtnuhWQ",
+            "leaguePoints": 1053,
+            "rank": "I",
+            "wins": 91,
+            "losses": 59,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
             "puuid": "ftKi9kfaqvDMCY0Waa9F72yBUzuFuusSUoOVs0dWCbCAmCKJ5ysCbuhf1tSxLoT4UaiCWra592L9OA",
             "leaguePoints": 1050,
             "rank": "I",
@@ -1666,6 +1644,39 @@
             "hotStreak": false
         },
         {
+            "puuid": "movcmBHw0D87NB0sJq2nYK915DfFCHQG6edujb0H5hwvymWfx8cedLx_GmLjOp4qAfQPveZmVBb1OQ",
+            "leaguePoints": 1049,
+            "rank": "I",
+            "wins": 99,
+            "losses": 82,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
+            "puuid": "E8RTZqEjD4UGpvAVKd_TQeIEO37l91FIUuUVuefyVdSwNagwXsuw06lllwKz5MJyLTJbwLlHoNHeNw",
+            "leaguePoints": 1048,
+            "rank": "I",
+            "wins": 103,
+            "losses": 86,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
+            "puuid": "s4AiZZeP9kalV9jaHAgnqzYtaLt2yST5ByoLvMeyHllu4O8n1MEF9qqNMPOT8EgrGtveIiofiGALTQ",
+            "leaguePoints": 1047,
+            "rank": "I",
+            "wins": 110,
+            "losses": 85,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
             "puuid": "9PxzbD69jE9vO9sKUOkT4pJVhiHyFGXn73_YkoRMUHPqa_mWUgOyenVL2IpXtDNQRWTcuGTC4K-Eig",
             "leaguePoints": 1046,
             "rank": "I",
@@ -1675,17 +1686,6 @@
             "inactive": false,
             "freshBlood": true,
             "hotStreak": true
-        },
-        {
-            "puuid": "i318MLoJYyXSQ0pQ4OdKgRJFg4S9AMnHvneGcxZE7odvIcAkqutYOAJppeSIuBGtXg2rW1RvOGztpg",
-            "leaguePoints": 1045,
-            "rank": "I",
-            "wins": 88,
-            "losses": 77,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
         },
         {
             "puuid": "TTOFiNqottBR94InKpnMcaEgV84WH1nW_yPgEu9-xC9FLMvh_GfLN0XglWuGZyqvu8xX_fbaSm7TFg",
@@ -1765,6 +1765,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "kClG-tegSfFIOB4rY2XRs_n7TzVKFhJ1t3reQx4O77i4SQ6PJM--dD1x_cOug64nr55vhJ8Yl5RXAA",
+            "leaguePoints": 1037,
+            "rank": "I",
+            "wins": 91,
+            "losses": 71,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
             "puuid": "u0ZMw2pSSKCVqoTHDhzjJzPBwtMFXcRmTrwi8d-eYxUOvJEqQ8RZExZCyEkzylnOzJl_A1Xv72IUAA",
             "leaguePoints": 1037,
             "rank": "I",
@@ -1787,14 +1798,25 @@
             "hotStreak": true
         },
         {
-            "puuid": "VCqrXqMCttzZeZocXLPyXoQ6vy-_24JiIlZocHkQLH__pdvD1fbPeAZ5fqQNkTEAjEvm2ItROL_J3A",
-            "leaguePoints": 1035,
+            "puuid": "ho6plNrBi37W4HGaIis65DvZhYWJoQ9SQv0EHUQQySJZ52nnVjT8bYnmPWF6SD75vSWHHscjxVRQSg",
+            "leaguePoints": 1036,
             "rank": "I",
-            "wins": 99,
-            "losses": 73,
+            "wins": 98,
+            "losses": 66,
             "veteran": false,
             "inactive": false,
-            "freshBlood": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
+            "puuid": "wI7eYTGfd05K73Ed04Me-n-zZJHA41Qt9rRTN_rRzfsf-aJLzp0_6Wt7dzkTfLOlPK1Oktel-v0Tng",
+            "leaguePoints": 1035,
+            "rank": "I",
+            "wins": 88,
+            "losses": 59,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
             "hotStreak": true
         },
         {
@@ -1897,6 +1919,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "eCjYmiB-p7U3SJEyviIxjujNOOf8LDGrJGQKwhEH25oKA7kUTroldB5qah6pj1ZQtVILiWUb4qGomg",
+            "leaguePoints": 1027,
+            "rank": "I",
+            "wins": 112,
+            "losses": 86,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
             "puuid": "DI-ouN54LM0lfAt8XPXVAXXPpNo_n7gfNpWZybz4oA4ZrinhyThxWnie0ZchbS7T9JEJH_10GJDBMQ",
             "leaguePoints": 1027,
             "rank": "I",
@@ -1908,6 +1941,17 @@
             "hotStreak": true
         },
         {
+            "puuid": "i318MLoJYyXSQ0pQ4OdKgRJFg4S9AMnHvneGcxZE7odvIcAkqutYOAJppeSIuBGtXg2rW1RvOGztpg",
+            "leaguePoints": 1027,
+            "rank": "I",
+            "wins": 88,
+            "losses": 78,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
             "puuid": "F1Z1eBGTlKU-yIdLyje6sCqegnnpRETIxvBQmH26Uwgrp0GEhIIuqmNS39UtqHatgkLoKApKOxzBmQ",
             "leaguePoints": 1027,
             "rank": "I",
@@ -1916,17 +1960,6 @@
             "veteran": false,
             "inactive": false,
             "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "PQUcXq-daZJKqpCt7P2qBxqO8qMEB9W33zHucxxGNysXlKznN-fe85op2loSdPwU9nUx5wnoTYV25Q",
-            "leaguePoints": 1026,
-            "rank": "I",
-            "wins": 153,
-            "losses": 152,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
             "hotStreak": false
         },
         {
@@ -1961,6 +1994,17 @@
             "inactive": false,
             "freshBlood": true,
             "hotStreak": true
+        },
+        {
+            "puuid": "PQUcXq-daZJKqpCt7P2qBxqO8qMEB9W33zHucxxGNysXlKznN-fe85op2loSdPwU9nUx5wnoTYV25Q",
+            "leaguePoints": 1022,
+            "rank": "I",
+            "wins": 154,
+            "losses": 153,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
         },
         {
             "puuid": "Uy7q28z_ALz_rIyn75x14QMm21yWSKoFzpbJElVR5T4MHU0wnJzHloO1PVYAGkULq98d-iwVrfq8lg",
@@ -2051,6 +2095,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "UqIsY78ItRUZZqhu6umqgnZKt5iu0qCE7cXgCOLvqfvOIDcTVRvcIn0f6t1_Kacf6xgU85y_oANrMA",
+            "leaguePoints": 1019,
+            "rank": "I",
+            "wins": 77,
+            "losses": 48,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": true
+        },
+        {
             "puuid": "1MnTVls_4LSlvweUvx0RgWFis5-09L8VjL1_HEDxxJ_DEmC30iOvZ0uxVZUchJlztXy94PuOrVGVLg",
             "leaguePoints": 1019,
             "rank": "I",
@@ -2095,17 +2150,6 @@
             "hotStreak": true
         },
         {
-            "puuid": "kClG-tegSfFIOB4rY2XRs_n7TzVKFhJ1t3reQx4O77i4SQ6PJM--dD1x_cOug64nr55vhJ8Yl5RXAA",
-            "leaguePoints": 1017,
-            "rank": "I",
-            "wins": 90,
-            "losses": 71,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "KmygoYddY7iBghfnP_GKL7_rZP0OwkWJatyV7qklscqEbD0c4j7wbI88YSXbryxalDBalVmvUecA-Q",
             "leaguePoints": 1017,
             "rank": "I",
@@ -2137,17 +2181,6 @@
             "inactive": false,
             "freshBlood": true,
             "hotStreak": false
-        },
-        {
-            "puuid": "wI7eYTGfd05K73Ed04Me-n-zZJHA41Qt9rRTN_rRzfsf-aJLzp0_6Wt7dzkTfLOlPK1Oktel-v0Tng",
-            "leaguePoints": 1014,
-            "rank": "I",
-            "wins": 87,
-            "losses": 59,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": true
         },
         {
             "puuid": "F6sH4os--ikMm-KlgWF07CrFUJFnGSIfzK4CM-etAAlFlcFvsvOQadYlxK4YHbDjSu6wVKsQiUYSow",
@@ -2216,17 +2249,6 @@
             "hotStreak": false
         },
         {
-            "puuid": "s4AiZZeP9kalV9jaHAgnqzYtaLt2yST5ByoLvMeyHllu4O8n1MEF9qqNMPOT8EgrGtveIiofiGALTQ",
-            "leaguePoints": 1011,
-            "rank": "I",
-            "wins": 109,
-            "losses": 85,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "w0SX5X7tTpPg3jMXPVUKsUOE2L-M2cZJ127BmhyP1XSP73oFMFBOqSyMnSs7eMalB1Ic2F0iTEzavg",
             "leaguePoints": 1011,
             "rank": "I",
@@ -2258,17 +2280,6 @@
             "inactive": false,
             "freshBlood": true,
             "hotStreak": true
-        },
-        {
-            "puuid": "ZOD-9oApglUWuXYppVcANoRKz7aXLXLrQGUoeckYG5wnIsW3EeQwivc6j8lswYMC3rC92Ha03xR5-g",
-            "leaguePoints": 1010,
-            "rank": "I",
-            "wins": 62,
-            "losses": 26,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
         },
         {
             "puuid": "KIR1ER3Xhw74udrH84l4abIn2bnCEXZzRH2Ic8Su5R65cuLoDfL5ESUEMcMs33A73qcJmK2w-BMJEA",
@@ -2315,15 +2326,15 @@
             "hotStreak": false
         },
         {
-            "puuid": "eCjYmiB-p7U3SJEyviIxjujNOOf8LDGrJGQKwhEH25oKA7kUTroldB5qah6pj1ZQtVILiWUb4qGomg",
+            "puuid": "Z3sAQLZdkTqVhjBFbc6-FalCvARGpOU5tDkX7heEYKavGsf77IRhYNKNxPO6pW_u_Mot_bSpmUg2dg",
             "leaguePoints": 1008,
             "rank": "I",
-            "wins": 111,
-            "losses": 86,
+            "wins": 108,
+            "losses": 93,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
-            "hotStreak": false
+            "hotStreak": true
         },
         {
             "puuid": "nEsoaEtlLEw3VHnkoeHUT4NRz2q3rtcTKY5HstM7hkXN0o82ZnfRucIHWJFr1fFjUJ6C-Jzju2y3EQ",
@@ -2359,17 +2370,6 @@
             "hotStreak": false
         },
         {
-            "puuid": "oS-R3Wc2zUt2dcfQ5G9USNybLbSyQOBuyX-YBN3DSG-xqLFWPLXi6SaLvnbF_2vgZ8i8mA_uKAzT3g",
-            "leaguePoints": 1008,
-            "rank": "I",
-            "wins": 77,
-            "losses": 61,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "gDkYcXAU7QHTNm120mIK6JoTUrtKlkeR868gVQBEkhKYkWiAbaHvGih3B_dFsgEionR3_cgINlNRfw",
             "leaguePoints": 1007,
             "rank": "I",
@@ -2392,22 +2392,22 @@
             "hotStreak": false
         },
         {
+            "puuid": "yvUkZ3bW36Qz6UA-GqGPto4I72IJIOnng3ir2mhjjy3py9r8YEFG6_QgOnwOMDt37piRgjb8cpNJbw",
+            "leaguePoints": 1007,
+            "rank": "I",
+            "wins": 90,
+            "losses": 61,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": true
+        },
+        {
             "puuid": "xMOvMSB4oOykKpqc_zQccpDScyALBow3tl8qFL4aDfcFRCHfQoNmUJekoBXsuvlwvG_z7WGbulmAEQ",
             "leaguePoints": 1007,
             "rank": "I",
             "wins": 73,
             "losses": 48,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "uhIujH9jbF2NXPT3L6JbXPDQ9zeqNFKtztgBPFJA2lQ--xSNXoZ72xntyXB7iDKT8UfwAxRpWXFvfw",
-            "leaguePoints": 1007,
-            "rank": "I",
-            "wins": 67,
-            "losses": 34,
             "veteran": false,
             "inactive": false,
             "freshBlood": false,
@@ -2434,6 +2434,17 @@
             "inactive": false,
             "freshBlood": true,
             "hotStreak": true
+        },
+        {
+            "puuid": "7R06kePxK-BRWj7geG5Hl8vcXrSWqVxdQiUEz49rc5q9szV7aUNUKaXJK-7W03zcSdEJm9pHzvLH8g",
+            "leaguePoints": 1006,
+            "rank": "I",
+            "wins": 80,
+            "losses": 49,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
         },
         {
             "puuid": "dK3WO4se5p_6D0QIOxBSuAs2KRWTGC4mRwcGPYpY5w2uDeiy4CGxQuvhNL01XUUooaY_Pkmb818LnA",
@@ -2535,11 +2546,11 @@
             "hotStreak": true
         },
         {
-            "puuid": "KX3HYS2rTBPed85rxlJBgLOpa1FhIXerqpqcR3cD6hyY7oHx0WJy0xB3WKq1w79uWcPmyHRC2kL8rw",
-            "leaguePoints": 1003,
+            "puuid": "q7XMJelbkCGHH-teGCpiRj8aWsxVU3kFtNbdpx91Y0Nqe-FGXmT2blDPOWCsJKI4pwwNLugWm8zSDg",
+            "leaguePoints": 1002,
             "rank": "I",
-            "wins": 84,
-            "losses": 57,
+            "wins": 123,
+            "losses": 111,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -2645,6 +2656,17 @@
             "hotStreak": true
         },
         {
+            "puuid": "rXveBWhAR7aA8uM3qdHipeupVGGHKHkAoVB2OuPDFOqX7lWQ6LcXqB_afY2ZVVZEA0H2xpfh8OIA6Q",
+            "leaguePoints": 999,
+            "rank": "I",
+            "wins": 127,
+            "losses": 100,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
             "puuid": "MoVbu989smdkC-eW9YArdtR3xA666nzgvKb4HVJvLqN325v7p3B6FXp0Ldefgs0ORIaMwwfpX38lrw",
             "leaguePoints": 999,
             "rank": "I",
@@ -2660,7 +2682,7 @@
             "leaguePoints": 999,
             "rank": "I",
             "wins": 89,
-            "losses": 89,
+            "losses": 90,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -2673,17 +2695,6 @@
             "wins": 78,
             "losses": 54,
             "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
-            "puuid": "rTL5WYVmjHm5c8Ogob7bfK7DClLTgW_0EVa1FvXSnSNxItS8U6HD7e6mGEnuMQ6XGxoJvyMhothOag",
-            "leaguePoints": 996,
-            "rank": "I",
-            "wins": 159,
-            "losses": 98,
-            "veteran": true,
             "inactive": false,
             "freshBlood": true,
             "hotStreak": false
@@ -2788,15 +2799,26 @@
             "hotStreak": true
         },
         {
-            "puuid": "yvUkZ3bW36Qz6UA-GqGPto4I72IJIOnng3ir2mhjjy3py9r8YEFG6_QgOnwOMDt37piRgjb8cpNJbw",
-            "leaguePoints": 989,
+            "puuid": "ZOD-9oApglUWuXYppVcANoRKz7aXLXLrQGUoeckYG5wnIsW3EeQwivc6j8lswYMC3rC92Ha03xR5-g",
+            "leaguePoints": 991,
             "rank": "I",
-            "wins": 89,
-            "losses": 61,
+            "wins": 62,
+            "losses": 27,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
-            "hotStreak": true
+            "hotStreak": false
+        },
+        {
+            "puuid": "oS-R3Wc2zUt2dcfQ5G9USNybLbSyQOBuyX-YBN3DSG-xqLFWPLXi6SaLvnbF_2vgZ8i8mA_uKAzT3g",
+            "leaguePoints": 990,
+            "rank": "I",
+            "wins": 77,
+            "losses": 62,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
         },
         {
             "puuid": "Uwy_3yCa7f2eisG4Rv8PeC7dpq8BnM1fbjulrqVqOXP2uINN3jBgHphHOqCEykHBYtRLv_LTu_Zu7A",
@@ -2804,17 +2826,6 @@
             "rank": "I",
             "wins": 89,
             "losses": 67,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": true
-        },
-        {
-            "puuid": "Z3sAQLZdkTqVhjBFbc6-FalCvARGpOU5tDkX7heEYKavGsf77IRhYNKNxPO6pW_u_Mot_bSpmUg2dg",
-            "leaguePoints": 988,
-            "rank": "I",
-            "wins": 107,
-            "losses": 93,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -2832,6 +2843,17 @@
             "hotStreak": true
         },
         {
+            "puuid": "uhIujH9jbF2NXPT3L6JbXPDQ9zeqNFKtztgBPFJA2lQ--xSNXoZ72xntyXB7iDKT8UfwAxRpWXFvfw",
+            "leaguePoints": 988,
+            "rank": "I",
+            "wins": 67,
+            "losses": 35,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": false,
+            "hotStreak": false
+        },
+        {
             "puuid": "mHJBg0O06jZ2QCqi798XX-B6CviAVHBxjRVOKmP-NY_jo_eRxxkGPDie779h6ZSpRLf1YFyx4GMBGg",
             "leaguePoints": 988,
             "rank": "I",
@@ -2843,26 +2865,15 @@
             "hotStreak": true
         },
         {
-            "puuid": "7R06kePxK-BRWj7geG5Hl8vcXrSWqVxdQiUEz49rc5q9szV7aUNUKaXJK-7W03zcSdEJm9pHzvLH8g",
-            "leaguePoints": 987,
+            "puuid": "J6wgvAz-Fd-Dd_TbqJgMZ1pXbruDE2oxAlBnEcHTEJZ2JiYCEC0Pymov1r0cxj6nelDJZYUADvl-yQ",
+            "leaguePoints": 986,
             "rank": "I",
-            "wins": 79,
-            "losses": 49,
-            "veteran": false,
+            "wins": 105,
+            "losses": 92,
+            "veteran": true,
             "inactive": false,
             "freshBlood": false,
             "hotStreak": false
-        },
-        {
-            "puuid": "q7XMJelbkCGHH-teGCpiRj8aWsxVU3kFtNbdpx91Y0Nqe-FGXmT2blDPOWCsJKI4pwwNLugWm8zSDg",
-            "leaguePoints": 986,
-            "rank": "I",
-            "wins": 122,
-            "losses": 111,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": true
         },
         {
             "puuid": "sBJokA7LIcYOaRBze75Uzyw40PsAdtdU9NwTJQmgQ2uz-btWoUQORIiYYqECMZuPfXxKt__O3i8KAw",
@@ -2924,29 +2935,29 @@
             "leaguePoints": 982,
             "rank": "I",
             "wins": 102,
-            "losses": 78,
+            "losses": 79,
             "veteran": true,
             "inactive": false,
             "freshBlood": false,
             "hotStreak": false
         },
         {
-            "puuid": "rXveBWhAR7aA8uM3qdHipeupVGGHKHkAoVB2OuPDFOqX7lWQ6LcXqB_afY2ZVVZEA0H2xpfh8OIA6Q",
-            "leaguePoints": 980,
+            "puuid": "KX3HYS2rTBPed85rxlJBgLOpa1FhIXerqpqcR3cD6hyY7oHx0WJy0xB3WKq1w79uWcPmyHRC2kL8rw",
+            "leaguePoints": 982,
             "rank": "I",
-            "wins": 126,
-            "losses": 100,
+            "wins": 84,
+            "losses": 58,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
             "hotStreak": false
         },
         {
-            "puuid": "UqIsY78ItRUZZqhu6umqgnZKt5iu0qCE7cXgCOLvqfvOIDcTVRvcIn0f6t1_Kacf6xgU85y_oANrMA",
-            "leaguePoints": 979,
+            "puuid": "6mBJB7sCCdAVOb7Hu4nEBvTCZrdIXh78irjpoYpnyAh5clD930UtUPPfgXZQ0Co1qVSHpJnsUgzS9Q",
+            "leaguePoints": 980,
             "rank": "I",
-            "wins": 76,
-            "losses": 48,
+            "wins": 106,
+            "losses": 77,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -2959,6 +2970,17 @@
             "wins": 58,
             "losses": 39,
             "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
+            "puuid": "rTL5WYVmjHm5c8Ogob7bfK7DClLTgW_0EVa1FvXSnSNxItS8U6HD7e6mGEnuMQ6XGxoJvyMhothOag",
+            "leaguePoints": 974,
+            "rank": "I",
+            "wins": 159,
+            "losses": 99,
+            "veteran": true,
             "inactive": false,
             "freshBlood": true,
             "hotStreak": false
@@ -3019,17 +3041,6 @@
             "hotStreak": false
         },
         {
-            "puuid": "J6wgvAz-Fd-Dd_TbqJgMZ1pXbruDE2oxAlBnEcHTEJZ2JiYCEC0Pymov1r0cxj6nelDJZYUADvl-yQ",
-            "leaguePoints": 968,
-            "rank": "I",
-            "wins": 104,
-            "losses": 92,
-            "veteran": true,
-            "inactive": false,
-            "freshBlood": false,
-            "hotStreak": false
-        },
-        {
             "puuid": "kw_-nuaXxhv5zCRpJrzQgXENrRn0k3xujpBpX_H0hr9A5i9rN4rbrjH-S9sriynudZmKrBven2iaJA",
             "leaguePoints": 968,
             "rank": "I",
@@ -3074,22 +3085,22 @@
             "hotStreak": false
         },
         {
-            "puuid": "6mBJB7sCCdAVOb7Hu4nEBvTCZrdIXh78irjpoYpnyAh5clD930UtUPPfgXZQ0Co1qVSHpJnsUgzS9Q",
-            "leaguePoints": 962,
+            "puuid": "xtHh6-s0QjOKM480bBm0wlfLOZi78OBeSyoEzgqeDwbT8aZPaEnubJszQEt333iaSEDgIkq9w-MD9g",
+            "leaguePoints": 958,
             "rank": "I",
-            "wins": 105,
-            "losses": 77,
+            "wins": 97,
+            "losses": 74,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
             "hotStreak": false
         },
         {
-            "puuid": "5YwvUkf60iD68vRv2dCaNNHhpe4HQKG1Kewe2zbOylAyBWZMVk7EzVoTYrmnSBz-RRNtPfg2dM3aCQ",
-            "leaguePoints": 961,
+            "puuid": "Ai363beEJZFkq2phgCv5vwT-MGnnzxKgoXpgJPsoFWMLfImsk5JwSgQFEcZRTlX_kubiRSy7Xh2QZA",
+            "leaguePoints": 955,
             "rank": "I",
-            "wins": 64,
-            "losses": 37,
+            "wins": 117,
+            "losses": 83,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -3129,33 +3140,22 @@
             "hotStreak": false
         },
         {
-            "puuid": "LKoEYYJlJVl2lNOsDCHO2gYhQxsOzO8hmHO_KrSWg48xfXsw_upcxVTptIrA-dR5bkppfgVVhtRWQw",
-            "leaguePoints": 947,
-            "rank": "I",
-            "wins": 94,
-            "losses": 70,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
-            "puuid": "Dh06IPDVnD81HWfxwPwOEJJQ2qdquF8ar7h3O32vUVnkIVxzP6RzN96d-IQRjVvUGgDJW-iAIa1zvg",
-            "leaguePoints": 946,
-            "rank": "I",
-            "wins": 90,
-            "losses": 59,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        {
             "puuid": "pQ1wzOdLtRz17CKIVmvASIyUtinvYX-u3IITcc2j-nWTZ9_h9K_rF2ysU5lbVWMqk2bNUKV1TUZIMg",
             "leaguePoints": 946,
             "rank": "I",
             "wins": 72,
             "losses": 58,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
+            "puuid": "LKoEYYJlJVl2lNOsDCHO2gYhQxsOzO8hmHO_KrSWg48xfXsw_upcxVTptIrA-dR5bkppfgVVhtRWQw",
+            "leaguePoints": 945,
+            "rank": "I",
+            "wins": 95,
+            "losses": 71,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -3173,11 +3173,11 @@
             "hotStreak": false
         },
         {
-            "puuid": "xtHh6-s0QjOKM480bBm0wlfLOZi78OBeSyoEzgqeDwbT8aZPaEnubJszQEt333iaSEDgIkq9w-MD9g",
-            "leaguePoints": 940,
+            "puuid": "5YwvUkf60iD68vRv2dCaNNHhpe4HQKG1Kewe2zbOylAyBWZMVk7EzVoTYrmnSBz-RRNtPfg2dM3aCQ",
+            "leaguePoints": 944,
             "rank": "I",
-            "wins": 96,
-            "losses": 74,
+            "wins": 64,
+            "losses": 38,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -3192,17 +3192,6 @@
             "veteran": true,
             "inactive": false,
             "freshBlood": false,
-            "hotStreak": false
-        },
-        {
-            "puuid": "Ai363beEJZFkq2phgCv5vwT-MGnnzxKgoXpgJPsoFWMLfImsk5JwSgQFEcZRTlX_kubiRSy7Xh2QZA",
-            "leaguePoints": 936,
-            "rank": "I",
-            "wins": 116,
-            "losses": 83,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
             "hotStreak": false
         },
         {
@@ -3261,11 +3250,11 @@
             "hotStreak": false
         },
         {
-            "puuid": "V8aLvcNlSN3kCWcFG5_tr1Fq6zWau79BjkcVqAZ1chyVfuVMVyR3oZUwy0kU0ipLWphM3D5Vgt9ugQ",
-            "leaguePoints": 929,
+            "puuid": "Dh06IPDVnD81HWfxwPwOEJJQ2qdquF8ar7h3O32vUVnkIVxzP6RzN96d-IQRjVvUGgDJW-iAIa1zvg",
+            "leaguePoints": 924,
             "rank": "I",
-            "wins": 73,
-            "losses": 74,
+            "wins": 90,
+            "losses": 60,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
@@ -3283,6 +3272,17 @@
             "hotStreak": false
         },
         {
+            "puuid": "V8aLvcNlSN3kCWcFG5_tr1Fq6zWau79BjkcVqAZ1chyVfuVMVyR3oZUwy0kU0ipLWphM3D5Vgt9ugQ",
+            "leaguePoints": 910,
+            "rank": "I",
+            "wins": 73,
+            "losses": 75,
+            "veteran": false,
+            "inactive": false,
+            "freshBlood": true,
+            "hotStreak": false
+        },
+        {
             "puuid": "k1SRaRo2d7MF5owqOZjC87CwJnWVbJZpCeEHt5vJhHZybFzXW74tbsueK1T3i0pLZ-qcS88VoBgC-g",
             "leaguePoints": 901,
             "rank": "I",
@@ -3295,10 +3295,10 @@
         },
         {
             "puuid": "QhCLe2RhHdZGTxCEoUtAyfch5ZEVPXpnqBGHp58iWr2KjGFDZr9Dwf2JvE6d1XAckcDqVwIi6Kn-Cg",
-            "leaguePoints": 897,
+            "leaguePoints": 874,
             "rank": "I",
             "wins": 107,
-            "losses": 96,
+            "losses": 97,
             "veteran": false,
             "inactive": false,
             "freshBlood": true,
