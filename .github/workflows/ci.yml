@@ -1,0 +1,35 @@
+name: Data Pipeline CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install black isort pytest
+
+    - name: Check Code Style (Black & Isort)
+      run: |
+        black . --check
+        isort . --check-only
+
+    - name: Run Unit Tests
+      run: |
+        # Config 테스트만 실행 (데이터 파일이 없어도 통과되도록)
+        pytest tests/test_config.py
