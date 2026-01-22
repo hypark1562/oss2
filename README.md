@@ -8,8 +8,6 @@ An End-to-End data pipeline that collects, transforms, loads, and visualizes Lea
 
 ## Architecture Overview
 
-## Architecture Overview
-
 ```mermaid
 graph LR
     %% 노드 정의
@@ -72,13 +70,26 @@ $ make dashboard
 
 ## Project Structure
 
-.
-├── etl/                # ETL Modules (Extract, Transform, Load)
-├── utils/              # Utility functions (Config loader)
-├── tests/              # Unit Tests (Config, Data Quality)
-├── config.yaml         # Centralized Configuration
-├── Makefile            # Build Commands
-└── README.md           # Project Documentation
+The project follows a modular architecture designed for scalability and maintainability.
+
+```text
+lol-data-pipeline/
+├── .github/workflows/   # CI/CD Pipeline Configuration (GitHub Actions)
+├── docs/                # Documentation (ADR, ERD, Analysis Reports)
+├── etl/                 # ETL Modules
+│   ├── extract.py       # Riot API Data Fetcher
+│   ├── transform.py     # Data Cleaning & Feature Engineering
+│   └── load.py          # SQLite Database Loader
+├── tests/               # Unit & Integration Tests (Pytest)
+├── utils/               # Shared Utilities (Logger, Config Loader)
+├── .gitignore           # Git Exclusion Rules
+├── config.yaml          # Centralized Configuration
+├── dashboard.py         # Streamlit Analytics Dashboard (Visualization)
+├── Dockerfile           # Docker Container Definition
+├── main.py              # Pipeline Entry Point
+├── Makefile             # Automation Commands (Make run, Make test)
+├── README.md            # Project Overview & Documentation
+└── requirements.txt     # Python Dependencies
 
 ![Dashboard Preview](dashboard_preview.png)
 > **Snapshot:** Challenger Tier players' win-rate distribution and correlation analysis.
