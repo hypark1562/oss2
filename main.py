@@ -1,18 +1,26 @@
 import logging
+import os
 import sys
+from logging.handlers import RotatingFileHandler
 
 # ETL 모듈 Import
 from etl.extract import get_challenger_league
-from etl.transform import process_data
 from etl.load import load_to_db
+from etl.transform import process_data
+
+os.makedirs("logs ", exist_ok=True)
 
 # 전역 로깅 설정 (Console Output)
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.StreamHandler(sys.stdout)
-        # logging.FileHandler("etl.log") # 필요하면 파일로도 저장 가능
+        logging.StreamHandler(sys.stdout),  # 화면에도 출력하고
+        RotatingFileHandler(
+            "logs/etl.log ",
+            maxBytes=10 * 1024 * 1024,  # 10MB 넘으면
+            backupCount=5,  # 옛날 파일 5개까지만 보관하고 나머지 삭제
+        ),
     ],
 )
 logger = logging.getLogger("ETL_Pipeline")

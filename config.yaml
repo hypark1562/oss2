@@ -1,0 +1,10 @@
+path:
+  raw_data: "data/raw/challenger_data.json"
+  processed_data: "data/processed/cleaned_data.csv"
+  log_file: "logs/etl.log"
+
+api:
+  league_url: "https://kr.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5"
+
+settings:
+  knn_neighbors: 5

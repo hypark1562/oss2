@@ -1,66 +1,66 @@
-import requests
 import json
-import os
 import logging
-import time
+import os
+
+import requests
 from dotenv import load_dotenv
 
-# 로거 설정
+from utils.config import config
+
 logger = logging.getLogger(__name__)
 
+# 환경변수 로드
 load_dotenv()
 API_KEY = os.getenv("RIOT_API_KEY")
 
 
 def get_challenger_league() -> bool:
     """
-    Riot API(League-V4)에서 챌린저 티어의 유저 데이터를 수집합니다.
-
-    Notes:
-        - API Rate Limit(429) 발생 시 별도 처리는 상위 모듈에서 담당하거나, 재시도 로직 추가 필요.
-        - 수집된 데이터는 Raw Layer인 'data/raw/' 경로에 JSON 포맷으로 저장됨.
+    Riot API로부터 챌린저 티어 유저 데이터를 수집하여 Raw Layer에 적재합니다.
 
     Returns:
-        bool: 수집 성공 여부 (True: 성공, False: 실패)
+        bool: 수집 및 저장 성공 여부
     """
-    url = f"https://kr.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key={API_KEY}"
+    # API URL 구성
+    base_url = config["api"]["challenger_url"]
+    request_url = f"{base_url}?api_key={API_KEY}"
+    save_path = config["path"]["raw_data"]
 
     try:
-        logger.info("🔄 [Extract] Riot API 데이터 요청 시작...")
-        response = requests.get(url)
+        logger.info("🔄 [Extract] Requesting data from Riot API...")
+        response = requests.get(request_url)
 
-        # [Risk Management] 장애 유형별 로깅
+        # 1. 정상 응답 처리 (200 OK)
         if response.status_code == 200:
             data = response.json()
 
-            os.makedirs("data/raw", exist_ok=True)
-            save_path = "data/raw/challenger_data.json"
+            # 디렉토리 확인 및 생성
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
             with open(save_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
 
-            logger.info(f"✅ [Extract] 데이터 수집 및 저장 완료: {save_path}")
+            logger.info(f"✅ [Extract] Saved raw data to: {save_path}")
             return True
 
+        # 2. 에러 핸들링
         else:
-            logger.error(f"❌ [Extract] API 에러 발생: {response.status_code}")
+            logger.error(
+                f"❌ [Extract] API Request Failed: Status {response.status_code}"
+            )
 
-            # [Risk Defense] Rate Limit 대응 로직
             if response.status_code == 429:
-                logger.warning(
-                    "⏳ API 요청 제한(Rate Limit) 감지. 잠시 대기가 필요합니다."
-                )
+                logger.warning("⏳ Rate Limit Exceeded. Please retry later.")
             elif response.status_code == 403:
-                logger.critical("🔑 API 키 만료 또는 권한 없음. .env 확인 필요.")
+                logger.critical("🔑 Unauthorized. Check your RIOT_API_KEY in .env")
 
             return False
 
     except Exception as e:
-        logger.exception(f"❌ [Extract] 알 수 없는 에러 발생: {e}")
+        logger.exception(f"❌ [Extract] Unexpected Error: {e}")
         return False
 
 
 if __name__ == "__main__":
-
     logging.basicConfig(level=logging.INFO)
     get_challenger_league()
