@@ -55,6 +55,9 @@ $ make dashboard
 ├── Makefile            # Build Commands
 └── README.md           # Project Documentation
 
+![Dashboard Preview](dashboard_preview.png)
+> **Snapshot:** Challenger Tier players' win-rate distribution and correlation analysis.
+
 ## Data Schema (ERD)
 
 ![ERD Structure](erd.png)
