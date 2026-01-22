@@ -7,29 +7,35 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
+    # 1. Check out source code
     - uses: actions/checkout@v3
 
+    # 2. Setup Python environment
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
         python-version: "3.9"
 
+    # 3. Install dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install black isort pytest
 
-    - name: Check Code Style (Black & Isort)
+    # 4. Enforce Code Style
+    # Fails if code is not formatted according to Black/Isort standards
+    - name: Verify Code Formatting
       run: |
         black . --check
         isort . --check-only
 
-    - name: Run Unit Tests
+    # 5. Run Validation Tests
+    # Ensures configuration integrity before build
+    - name: Run Configuration Tests
       run: |
-        # Config 테스트만 실행 (데이터 파일이 없어도 통과되도록)
         pytest tests/test_config.py
