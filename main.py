@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from etl.extract import extract_data
 from etl.load import load_data
 from etl.transform import transform_data
+
 # 우리가 방금 만든 알림 함수 가져오기
 from utils.alert import send_slack_alert
 from utils.logger import setup_logger
@@ -39,7 +40,8 @@ def main():
         # [성공 알림] 다 끝났으면 성공했다고 보고
         logger.info("ETL Pipeline Completed Successfully.")
         send_slack_alert(
-            f"ETL 작업 성공! 총 {len(clean_df)}건의 데이터가 저장되었습니다. 🎉", level="INFO"
+            f"ETL 작업 성공! 총 {len(clean_df)}건의 데이터가 저장되었습니다. 🎉",
+            level="INFO",
         )
 
     except Exception as e:

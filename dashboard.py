@@ -178,11 +178,9 @@ if df is not None:
 else:
     # Error State Handling
     st.error("Data Pipeline Error: Processed data file not found.")
-    st.markdown(
-        """
+    st.markdown("""
         **Troubleshooting:**
         1. Verify that the ETL pipeline (`main.py`) has been executed successfully.
         2. Check if `data/processed/cleaned_data.csv` exists.
         3. Review `logs/etl.log` for any upstream errors.
-    """
-    )
+    """)
