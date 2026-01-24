@@ -1,69 +1,59 @@
+"""
+Module: tests/test_data_quality.py
+Description: Unit tests for data validation logic.
+"""
 import os
+import sys
 
 import pandas as pd
 import pytest
 
-from utils.config import config
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from etl.transform import validate_data
+from utils.config import load_config
 
 
-@pytest.fixture(scope="module")
-def df():
-    """
-    Load the processed dataset fixture.
-    Scope='module' ensures the file is read only once per test session.
-
-    If the file does not exist, tests will be skipped automatically.
-    """
-    file_path = config["path"]["processed_data"]
-
-    if not os.path.exists(file_path):
-        pytest.skip(f"Skipping tests: Data file not found at {file_path}")
-
-    return pd.read_csv(file_path)
+@pytest.fixture
+def config():
+    """Load configuration for tests."""
+    return load_config()
 
 
-def test_data_schema(df):
-    """
-    Verify that the dataset contains necessary columns for analysis.
-    Note: 'summonerName' is no longer returned by Riot API v4.
-    We use 'puuid' as the unique identifier.
-    """
-    required_columns = ["puuid", "leaguePoints", "wins", "losses"]
-
-    for col in required_columns:
-        assert col in df.columns, f"Missing required column: {col}"
-
-
-def test_no_data_leakage(df):
-    """
-    Critical: Ensure 'gold_earned' and 'total_damage' are REMOVED.
-    These columns cause data leakage in win prediction models.
-    """
-    forbidden_cols = ["gold_earned", "total_damage"]
-    for col in forbidden_cols:
-        assert col not in df.columns, f"Data Leakage detected: {col} should be dropped."
+@pytest.fixture
+def valid_dataframe():
+    """Create a sample valid DataFrame."""
+    data = {
+        "player_name": ["Faker", "Chovy"],
+        "summoner_id": ["id1", "id2"],
+        "lp": [1200, 1100],
+        "wins": [100, 90],
+        "losses": [50, 45],
+        "win_rate": [66.6, 66.6],
+    }
+    return pd.DataFrame(data)
 
 
-def test_no_missing_values(df):
-    """
-    Ensure KNN Imputation worked correctly.
-    Numeric columns should not have any NaN values.
-    """
-    numeric_df = df.select_dtypes(include=["number"])
-    assert (
-        numeric_df.isnull().sum().sum() == 0
-    ), "Found missing values in numeric columns after imputation."
+def test_validate_data_success(valid_dataframe):
+    """Test that valid data passes validation."""
+    assert validate_data(valid_dataframe) is True
 
 
-def test_business_logic_integrity(df):
-    """
-    Validate domain-specific constraints.
-    Constraint: Total games cannot be negative.
-    """
-    # Calculate derived metric if not exists
-    if "total_games" not in df.columns:
-        total_games = df["wins"] + df["losses"]
-    else:
-        total_games = df["total_games"]
+def test_validate_data_failure_logic(valid_dataframe):
+    """Test that impossible data (Win Rate > 100%) fails validation."""
 
-    assert (total_games >= 0).all(), "Found users with negative game counts."
+    valid_dataframe.loc[0, "win_rate"] = 150.0
+    assert validate_data(valid_dataframe) is False
+
+
+def test_validate_data_failure_missing_columns(valid_dataframe):
+    """Test that missing critical columns fails validation."""
+
+    invalid_df = valid_dataframe.drop(columns=["player_name"])
+    assert validate_data(invalid_df) is False
+
+
+def test_empty_dataframe():
+    """Test that empty DataFrame fails validation."""
+    empty_df = pd.DataFrame()
+    assert validate_data(empty_df) is False

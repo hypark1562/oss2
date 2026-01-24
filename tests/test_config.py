@@ -7,7 +7,7 @@ import sys
 
 import pytest
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 try:
     from utils.config import load_config
@@ -19,23 +19,22 @@ except ImportError:
 def config():
     """
     Project configuration fixture.
-    Loads the config.yaml file once for all tests in this module.
     """
     if not load_config:
-        pytest.fail("Could not import load_config from utils.config")
+        pytest.fail(
+            "Could not import load_config from utils.config. Check if PyYAML is installed and utils/config.py exists."
+        )
     return load_config()
 
 
 def test_config_file_exists():
-    """Verify that the essential 'config.yaml' file exists in the root directory."""
-    assert os.path.exists("config.yaml"), "Critical: config.yaml file is missing."
+    """Verify that 'config.yaml' exists."""
+    assert os.path.exists("config.yaml"), "config.yaml file is missing in root."
 
 
 def test_essential_keys_structure(config):
     """
-    Verify that the configuration dictionary contains top-level keys.
-    Note: 'settings' key is removed as KNN logic was deprecated.
-    Required keys: 'path', 'api'
+    Verify configuration keys.
     """
     required_keys = ["path", "api"]
     for key in required_keys:
@@ -43,9 +42,8 @@ def test_essential_keys_structure(config):
 
 
 def test_path_configuration(config):
-    """Ensure path configurations are strings and not empty."""
+    """Ensure path configurations are strings."""
     paths = config["path"]
-
     assert isinstance(paths.get("raw_data"), str)
     assert isinstance(paths.get("processed_data"), str)
     assert isinstance(paths.get("db_path"), str)
