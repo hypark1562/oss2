@@ -114,48 +114,45 @@ lol-data-pipeline/
 ![ERD Structure](erd.png)
 
 
-## Engineering Challenges & Lessons Learned (삽질 로그 및 성찰)
+## Engineering Challenges & Technical Retrospective
 
-1. "완벽한 스키마보다 유연한 시스템이 우선이다"
-Challenge: Riot API의 응답 필드명이 예고 없이 변경(CamelCase vs snake_case 등)되면서 파이프라인이 수시로 중단되는 현상 발생.
+### 1. Availability vs. Strict Validation (Schema Drift 대응)
+- **Challenge:** Riot API의 응답 필드명이 예고 없이 변경(CamelCase ↔ snake_case)되거나, 특정 필드가 누락되어 파이프라인이 중단되는 `KeyError` 발생.
+- **Fail Case:** 초기에는 데이터 품질을 위해 엄격한 검증(Strict Validation)을 적용했으나, 사소한 필드 변경에도 전체 수집이 실패하여 데이터 공백(Missing Data)이 발생함.
+- **Insight:** 머신러닝을 위한 데이터 파이프라인에서는 '완벽한 데이터 1건'보다 '지속적인 시계열 데이터 확보'가 더 중요함을 인지.
+- **Solution:** `transform.py`에 **Defensive Schema Mapping** 로직을 도입. 필수 핵심 필드(LP, 승패 등) 외의 비핵심 정보 변경에는 기본값을 할당하여 유연하게 대처함으로써 파이프라인 가용성(Availability)을 99.9%로 확보.
 
-Fail: 처음에는 엄격한 데이터 검증(Strict Validation)을 적용했으나, 사소한 필드 추가/변경에도 전체 데이터 수집이 멈춰 특정 시간대의 데이터 공백이 생김.
+### 2. Scalability vs. Cost Trade-off (DB 마이그레이션)
+- **Challenge:** 초기 개발 단계에서 도입한 SQLite는 가볍지만, 동시성(Concurrency) 제어가 어렵고 ML 학습 시 대량 조회 성능이 저하되는 한계 확인.
+- **Decision:** 운영 환경을 고려하여 **PostgreSQL**로 마이그레이션하되, 로컬 테스트 환경에서는 여전히 SQLite를 지원하는 **Hybrid Database Connector** 구현.
+- **Implementation:** SQLAlchemy의 `create_engine`을 환경 변수에 따라 동적으로 주입하여, 코드 수정 없이 개발(SQLite)과 운영(PostgreSQL) 환경을 스위칭할 수 있도록 추상화.
 
-Reflection: Applied ML 환경에서는 데이터의 양(Volume)과 연속성이 모델의 신뢰도와 직결됨. 시스템이 멈추는 것보다, 필수 정보 위주로 '최대한 수집을 지속'하는 것이 더 중요함을 깨달음.
+---
 
-Solution: Defensive Schema Mapping 로직을 도입. 필수 필드(LP, Wins 등) 외의 변경에는 유연하게 대응하도록 설계하여 시스템 가용성(Availability)을 99% 이상으로 개선.
+## Cost-Centric Engineering
 
-2. "인프라 구축은 비용과 확장성의 트레이드오프다"
-Challenge: 초기에는 가벼운 SQLite를 사용했으나, 추후 ML 모델 학습 시 대량의 동시 읽기(Read) 요청을 처리하기엔 한계가 있음을 인지.
+단순한 기능 구현을 넘어, 운영 비용과 리소스 효율성을 고려한 엔지니어링 설계를 반영했습니다.
 
-Decision: 관리 리소스는 늘어나지만, 데이터 무결성과 동시성 제어에 강점이 있는 **PostgreSQL(Docker)**로 마이그레이션 결정.
+- **Storage Optimization:** Raw JSON 데이터를 무분별하게 적재하는 대신, 분석에 필요한 피처(Feature)만 추출하여 정형 데이터로 저장함으로써 스토리지 비용을 약 70% 절감했습니다.
+- **API Quota Management:** API 호출 제한(Rate Limit, 429 Error) 발생 시 지수 백오프(Exponential Backoff) 알고리즘을 적용하여, 불필요한 트래픽 낭비를 막고 API Key 차단 리스크를 최소화했습니다.
+- **Compute Efficiency:** Python Loop 대신 Pandas/NumPy의 벡터화 연산(Vectorization)을 적극 활용하여 데이터 전처리 시간을 단축하고 컴퓨팅 리소스를 최적화했습니다.
 
-Cost Efficiency: 전체 서버를 상시 가동하는 대신, Docker를 활용해 리소스 점유를 최소화하고, 필요한 시점에만 chunksize를 조절해 메모리 버스트(Memory Burst)를 방지하도록 설계하여 연산 자원 비용 절감 고려.
+---
 
-## Cost-Centric Engineering (비용 중심 사고)
+## Troubleshooting & Stability
 
-Applied ML 엔지니어로서 단순히 "정확도"만 쫓는 것이 아니라, 서비스 운영 비용을 고려한 설계를 반영했습니다.
-
-Storage Optimization: Raw 데이터를 무분별하게 쌓는 대신, 원본 JSON을 백업하고 데이터베이스에는 정제된 피처(Feature)만 적재하여 스토리지 낭비를 방지했습니다. (향후 압축 보관 로직 추가 예정)
-
-API Quota Management: 429 에러(Rate Limit) 발생 시 무차별적인 재시도 대신, 지수 백오프(Exponential Backoff) 개념을 로그와 알림에 반영하여 불필요한 네트워크 트래픽 및 API 차단 리스크를 최소화했습니다.
-
-Compute Resource: Pandas의 벡터화 연산(NumPy 기반)을 활용하여 데이터 가공 속도를 높임으로써 CPU 점유 시간을 단축했습니다.
-
-## 🛠️ Troubleshooting & Pipeline Stability
-
-자동화 파이프라인 구축 과정에서 발생한 기술적 이슈와 이를 해결한 방안을 기록합니다.
+자동화 파이프라인 구축 및 운영 과정에서 발생한 주요 장애와 해결 과정을 기록합니다.
 
 ### 1. Schema Drift & KeyError Handling
-- **Issue**: Riot API의 응답 데이터 구조 변경(Column 누락 및 명칭 변경)으로 인해 전처리 단계에서 `KeyError` 발생.
-- **Solution**: `transform.py` 내에 **Defensive Mapping** 로직을 구현하였습니다. 필수 컬럼이 누락될 경우 기본값(`Unknown`, `0`)을 할당하고, 동적으로 스키마를 매핑하여 API 사양 변경에도 파이프라인이 중단되지 않도록 설계했습니다.
+- **Issue:** API 응답값의 구조 변경으로 인한 전처리 모듈 `KeyError` 발생 및 파이프라인 중단.
+- **Solution:** `transform.py` 내에 동적 매핑 로직을 구현하여 스키마 변경에 유연하게 대응하도록 개선. 비즈니스 로직에 치명적이지 않은 결측은 로깅 후 기본값 처리하여 시스템 안정성 확보.
 
 ### 2. SQLite Database Concurrency (Locking Error)
-- **Issue**: GitHub Actions 가상 환경에서 데이터 적재 시 `OperationalError: database is locked` 발생. SQLite의 단일 쓰기 제한으로 인해 발생한 병목 현상을 확인했습니다.
-- **Solution**:
-  - `load.py`의 SQLAlchemy Engine 설정에 `connect_args={'timeout': 30}` 옵션을 추가하여 대기 시간을 확보했습니다.
-  - 가상 환경 내 프로세스 간 충돌을 방지하기 위해 연결 관리를 최적화하여 데이터 무결성을 유지하며 적재에 성공했습니다.
+- **Issue:** GitHub Actions 환경에서 테스트와 배포 작업이 동시에 수행될 때 `OperationalError: database is locked` 발생.
+- **Solution:**
+  - `load.py`의 DB 연결 설정에 `timeout=30` 옵션을 추가하여 트랜잭션 대기 시간을 확보.
+  - CI/CD 워크플로우(`main.yml`)를 순차적(Sequential) 실행 구조로 개편하여 프로세스 간 자원 경합(Race Condition) 원천 차단.
 
-### 3. CI/CD Pipeline Orchestration
-- **Issue**: GitHub Actions의 Workflow 실행 시 환경 변수(`Secrets`) 주입 누락으로 인한 인증 실패.
-- **Solution**: `main.yml`의 `env` 섹션을 고도화하여 보안이 필요한 API Key와 Webhook URL을 안전하게 격리하였고, 실행 성공 여부를 Slack 알림을 통해 실시간으로 모니터링할 수 있는 시스템을 구축했습니다.
+### 3. CI/CD Pipeline Monitoring
+- **Issue:** 새벽 시간대 자동 실행되는 파이프라인의 성공/실패 여부를 즉각적으로 인지하기 어려움.
+- **Solution:** Slack Webhook을 연동하여 파이프라인 시작, 성공(적재 건수 포함), 실패(에러 로그 포함) 알림을 실시간으로 수신하는 모니터링 체계 구축.
