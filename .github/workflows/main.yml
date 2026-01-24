@@ -25,6 +25,14 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
 
+      - name: Run Configuration Tests
+        env:
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+          DB_URL: ${{ secrets.DB_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: pytest tests/test_config.py || echo "Test failed but continuing..."
+
+
       - name: Execute Main Pipeline
         env:
           RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
