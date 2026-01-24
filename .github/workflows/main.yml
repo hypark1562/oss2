@@ -1,13 +1,13 @@
-name: LoL-Data-Pipeline-Scheduler
+name: Data Pipeline CI
 
 on:
   schedule:
     - cron: '0 15 * * *'
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
-  run-etl:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,9 +24,9 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+
       - name: Execute Main Pipeline
         env:
-          # 우리가 GitHub Secrets에 등록한 3개만 딱 남겼습니다.
           RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
           DB_URL: ${{ secrets.DB_URL }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
