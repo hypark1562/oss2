@@ -1,18 +1,20 @@
 """
 Module: load.py
-Persists transformed data to PostgreSQL.
-Engine: SQLAlchemy for connection pooling and ORM compatibility.
+Description: Persists transformed data to PostgreSQL using Incremental Load (Upsert).
+             Maintains historical data integrity and prevents duplicate entries.
 """
 
-import os
 import logging
+import os
+
 import pandas as pd
-from sqlalchemy import create_engine
-from sqlalchemy.exc import SQLAlchemyError
 from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
+from sqlalchemy.exc import SQLAlchemyError
 
 logger = logging.getLogger(__name__)
 load_dotenv()
+
 
 def _get_engine():
     user = os.getenv("DB_USER", "admin")
@@ -25,29 +27,51 @@ def _get_engine():
 
 def load_data(df):
     """
-    Bulk load DataFrame to PostgreSQL.
-    Configured with 'replace' mode for initial build phase.
+    Executes Incremental Load via staging table to ensure atomic Upsert operations.
+    Note: Requires UNIQUE constraint on 'summoner_id' in target table.
     """
     if df.empty:
-        logger.info("No data to load. Task skipped.")
+        logger.info("[Load] No data to persist. Skipping task.")
         return
 
     engine = _get_engine()
-    
+    staging_table = "temp_challenger_stats"
+    target_table = "challenger_stats"
+
     try:
-        # Bulk insert with 1000-row chunks for memory efficiency
-        df.to_sql(
-            "challenger_stats",
-            con=engine,
-            if_exists="replace",
-            index=False,
-            chunksize=1000,
-            method="multi"
+        with engine.begin() as conn:
+            # 1. Create temporary staging table
+            df.to_sql(staging_table, con=conn, if_exists="replace", index=False)
+
+            # 2. Execute Upsert (ON CONFLICT) logic
+            # This ensures time-series data accumulation without primary key violations.
+            upsert_query = text(
+                f"""
+                INSERT INTO {target_table} (player_name, summoner_id, lp, wins, losses, total_games, win_rate, updated_at)
+                SELECT player_name, summoner_id, lp, wins, losses, total_games, win_rate, NOW()
+                FROM {staging_table}
+                ON CONFLICT (summoner_id)
+                DO UPDATE SET
+                    lp = EXCLUDED.lp,
+                    wins = EXCLUDED.wins,
+                    losses = EXCLUDED.losses,
+                    total_games = EXCLUDED.total_games,
+                    win_rate = EXCLUDED.win_rate,
+                    updated_at = NOW();
+            """
+            )
+
+            conn.execute(upsert_query)
+
+            # 3. Drop staging table
+            conn.execute(text(f"DROP TABLE IF EXISTS {staging_table}"))
+
+        logger.info(
+            f"[Load] Incremental load completed successfully for {len(df)} records."
         )
-        logger.info("Database load successful.")
-        
+
     except SQLAlchemyError as e:
-        logger.error(f"DB Load Failure: {e}")
+        logger.error(f"[Load] Database transaction failed: {str(e)}")
         raise
     finally:
-        engine.dispose() # Clean up connection pool
+        engine.dispose()
