@@ -1,10 +1,9 @@
 """
-Module: load.py
-Description: Persists transformed data to the target database using Upsert logic.
-             Supports both SQLite (Local) and PostgreSQL (Production) environments
-             with robust connection handling and timeout management.
+Module: etl.load
+Description:
+    Manages data persistence to SQLite (Development) or PostgreSQL (Production).
+    Implements Atomic Upsert strategy to ensure idempotency.
 """
-
 import logging
 import os
 
@@ -12,61 +11,66 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
-# Initialize logger for data persistence monitoring
 logger = logging.getLogger(__name__)
 
 
 def _get_engine():
     """
-    Constructs the SQLAlchemy engine based on the environment-specific DB_URL.
-    Includes SQLite-specific arguments to prevent 'Database is locked' errors.
+    Constructs a SQLAlchemy engine with environment-specific configurations.
+
+    Returns:
+        sqlalchemy.engine.Engine: Configured database engine.
     """
     db_url = os.getenv("DB_URL", "sqlite:///lol_data.db")
 
-    # SQLite requires specific threading and timeout arguments for concurrent access
+    # [Performance] SQLite optimization for high concurrency
     if "sqlite" in db_url:
         return create_engine(
             db_url, connect_args={"timeout": 30, "check_same_thread": False}
         )
-
-    # PostgreSQL standard engine initialization
     return create_engine(db_url)
 
 
-def load_data(df: pd.DataFrame):
+def load_data(df: pd.DataFrame) -> None:
     """
-    Executes data persistence via 'Replace' or 'Upsert' strategy.
-    Note: SQLite uses 'replace' for simplicity, while PostgreSQL utilizes staging tables.
+    Loads transformed data into the target database.
+
+    Strategy:
+        - SQLite: Full Replace (due to limited Upsert support).
+        - PostgreSQL: Atomic Upsert (INSERT ON CONFLICT UPDATE) via staging table.
+
+    Args:
+        df (pd.DataFrame): Cleaned data to persist.
     """
     if df.empty:
-        logger.info("[Load] No data to persist. Skipping task.")
+        logger.info("[Load] No records to load. Skipping.")
         return
 
     engine = _get_engine()
-    db_url = os.getenv("DB_URL", "")
     target_table = "challenger_stats"
+    db_url = os.getenv("DB_URL", "")
 
     try:
-        # 1. Handling SQLite (Local/Testing Environment)
-        # SQLite does not support advanced PostgreSQL Upsert syntax (ON CONFLICT)
+        # 1. SQLite: Simple Replace Strategy (Dev/Test)
         if "sqlite" in db_url or not db_url:
             with engine.begin() as conn:
                 df.to_sql(target_table, con=conn, if_exists="replace", index=False)
-            logger.info(f"[Load] SQLite full-replace completed for {len(df)} records.")
+            logger.info(f"[Load] SQLite: Successfully loaded {len(df)} records.")
 
-        # 2. Handling PostgreSQL (Production Environment)
-        # Implements atomic Upsert logic via temporary staging table
+        # 2. PostgreSQL: Staging Table + Upsert Strategy (Production)
         else:
             staging_table = "temp_challenger_stats"
             with engine.begin() as conn:
-                # Create staging table
+                # Load to temporary staging table first
                 df.to_sql(staging_table, con=conn, if_exists="replace", index=False)
 
-                # Execute Upsert logic for PostgreSQL
+                # Execute Upsert (Idempotent Operation)
                 upsert_query = text(
                     f"""
-                    INSERT INTO {target_table} (player_name, summoner_id, lp, wins, losses, total_games, win_rate, updated_at)
-                    SELECT player_name, summoner_id, lp, wins, losses, total_games, win_rate, CURRENT_TIMESTAMP
+                    INSERT INTO {target_table}
+                        (player_name, summoner_id, lp, wins, losses, total_games, win_rate, updated_at)
+                    SELECT
+                        player_name, summoner_id, lp, wins, losses, total_games, win_rate, CURRENT_TIMESTAMP
                     FROM {staging_table}
                     ON CONFLICT (summoner_id)
                     DO UPDATE SET
@@ -81,14 +85,10 @@ def load_data(df: pd.DataFrame):
                 conn.execute(upsert_query)
                 conn.execute(text(f"DROP TABLE IF EXISTS {staging_table}"))
 
-            logger.info(
-                f"[Load] PostgreSQL incremental load completed for {len(df)} records."
-            )
+            logger.info(f"[Load] PostgreSQL: Upsert completed for {len(df)} records.")
 
     except SQLAlchemyError as e:
-        logger.error(
-            f"[Load] Database transaction failed: {type(e).__name__} - {str(e)}"
-        )
+        logger.critical(f"[Load] Database transaction failed: {e}")
         raise
     finally:
         engine.dispose()

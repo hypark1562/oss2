@@ -1,53 +1,58 @@
 """
-Module: main.py
-Description: Entry point for LoL Data Pipeline.
-             Orchestrates ETL phases and manages global exception handling.
+Module: main
+Description:
+    Entry point for the LoL Data Pipeline.
+    Orchestrates the ETL workflow (Extract -> Transform -> Load) and handles
+    global exceptions and notifications.
 """
-
-import sys
 import logging
+import sys
+
 from etl.extract import extract_data
-from etl.transform import transform_data
 from etl.load import load_data
+from etl.transform import transform_data
 from utils.alert import send_slack_alert
 from utils.logger import setup_logger
 
+# Initialize global logger
 logger = setup_logger()
 
 
-def run_pipeline():
+def run_pipeline() -> None:
     """
-    Execute full ETL workflow: Extract -> Transform -> Load.
-    Integrated with Slack webhook for real-time monitoring.
+    Executes the End-to-End ETL process.
+
+    Flow:
+        1. Extract: Fetch data from Riot API.
+        2. Transform: Cleanse and engineer features.
+        3. Load: Persist data to the target database.
+        4. Notify: Send execution status to Slack.
     """
     try:
-        # Initialize process and notify start
-        logger.info("Initializing ETL Pipeline...")
-        send_slack_alert("ETL Process Started", level="INFO")
+        logger.info(">>> Pipeline Execution Started")
+        send_slack_alert("🚀 ETL Pipeline Started", level="INFO")
 
-        # Phase 1: Data Acquisition
-        # Note: Depends on Riot API availability and Rate Limit quota.
+        # [Step 1] Extraction
         raw_data = extract_data()
-        
-        # Phase 2: Business Logic & Feature Engineering
-        # Process raw JSON into structured DataFrame for analytics.
+
+        # [Step 2] Transformation
         clean_df = transform_data(raw_data)
 
-        # Phase 3: Data Persistence
-        # Target: PostgreSQL (Production instance via Docker)
+        # [Step 3] Loading
         load_data(clean_df)
 
-        # Finalize and report success metrics
-        success_log = f"Pipeline execution completed. Records: {len(clean_df)}"
-        logger.info(success_log)
-        send_slack_alert(success_log, level="INFO")
+        # [Completion]
+        success_msg = f"✅ Pipeline Succeeded. Processed {len(clean_df)} records."
+        logger.info(success_msg)
+        send_slack_alert(success_msg, level="INFO")
 
     except Exception as e:
-        # Log critical failure context for incident response
-        logger.error(f"Execution Error: {str(e)}", exc_info=True)
-        send_slack_alert(f"Pipeline Failure: {type(e).__name__}", level="ERROR")
+        # [Error Handling] Catch-all for unexpected failures
+        error_msg = f"❌ Pipeline Failed: {type(e).__name__} - {str(e)}"
+        logger.critical(error_msg, exc_info=True)
+        send_slack_alert(error_msg, level="ERROR")
         sys.exit(1)
 
+
 if __name__ == "__main__":
-    print("!!! Pipeline execution started directly !!!") # 이 글자가 뜨는지 확인
     run_pipeline()
