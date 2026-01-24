@@ -141,3 +141,21 @@ Storage Optimization: Raw 데이터를 무분별하게 쌓는 대신, 원본 JSO
 API Quota Management: 429 에러(Rate Limit) 발생 시 무차별적인 재시도 대신, 지수 백오프(Exponential Backoff) 개념을 로그와 알림에 반영하여 불필요한 네트워크 트래픽 및 API 차단 리스크를 최소화했습니다.
 
 Compute Resource: Pandas의 벡터화 연산(NumPy 기반)을 활용하여 데이터 가공 속도를 높임으로써 CPU 점유 시간을 단축했습니다.
+
+## 🛠️ Troubleshooting & Pipeline Stability
+
+자동화 파이프라인 구축 과정에서 발생한 기술적 이슈와 이를 해결한 방안을 기록합니다.
+
+### 1. Schema Drift & KeyError Handling
+- **Issue**: Riot API의 응답 데이터 구조 변경(Column 누락 및 명칭 변경)으로 인해 전처리 단계에서 `KeyError` 발생.
+- **Solution**: `transform.py` 내에 **Defensive Mapping** 로직을 구현하였습니다. 필수 컬럼이 누락될 경우 기본값(`Unknown`, `0`)을 할당하고, 동적으로 스키마를 매핑하여 API 사양 변경에도 파이프라인이 중단되지 않도록 설계했습니다.
+
+### 2. SQLite Database Concurrency (Locking Error)
+- **Issue**: GitHub Actions 가상 환경에서 데이터 적재 시 `OperationalError: database is locked` 발생. SQLite의 단일 쓰기 제한으로 인해 발생한 병목 현상을 확인했습니다.
+- **Solution**:
+  - `load.py`의 SQLAlchemy Engine 설정에 `connect_args={'timeout': 30}` 옵션을 추가하여 대기 시간을 확보했습니다.
+  - 가상 환경 내 프로세스 간 충돌을 방지하기 위해 연결 관리를 최적화하여 데이터 무결성을 유지하며 적재에 성공했습니다.
+
+### 3. CI/CD Pipeline Orchestration
+- **Issue**: GitHub Actions의 Workflow 실행 시 환경 변수(`Secrets`) 주입 누락으로 인한 인증 실패.
+- **Solution**: `main.yml`의 `env` 섹션을 고도화하여 보안이 필요한 API Key와 Webhook URL을 안전하게 격리하였고, 실행 성공 여부를 Slack 알림을 통해 실시간으로 모니터링할 수 있는 시스템을 구축했습니다.
