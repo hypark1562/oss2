@@ -1,7 +1,8 @@
 """
 Module: transform.py
 Description: Implementation of data cleansing, validation, and feature engineering.
-             Ensures data integrity before the loading phase.
+             Ensures data integrity before the loading phase by handling schema
+             drifts and logical anomalies.
 """
 
 import logging
@@ -9,6 +10,7 @@ import logging
 import numpy as np
 import pandas as pd
 
+# Initialize logger for centralized monitoring
 logger = logging.getLogger(__name__)
 
 
@@ -21,9 +23,7 @@ def validate_data(df: pd.DataFrame) -> bool:
         logger.warning("[Validation] Empty DataFrame detected.")
         return False
 
-    # Check for logical anomalies in core metrics
-    # 1. Win rate must be within 0-100 range
-    # 2. LP(League Points) should not be negative
+    # 1. Business Logic Check: Validate metric boundaries
     invalid_logic = df[(df["win_rate"] > 100) | (df["lp"] < 0)]
 
     if not invalid_logic.empty:
@@ -32,29 +32,32 @@ def validate_data(df: pd.DataFrame) -> bool:
         )
         return False
 
-    # Check for critical Null values in primary features
+    # 2. Schema Integrity Check: Ensure critical identifiers exist
     critical_fields = ["player_name", "summoner_id", "lp"]
     if df[critical_fields].isnull().any().any():
         logger.error("[Validation] Null values found in critical fields.")
         return False
 
-    logger.info("[Validation] Data quality check passed.")
+    logger.info(f"[Validation] Data quality check passed for {len(df)} records.")
     return True
 
 
-def transform_data(raw_data):
+def transform_data(raw_data: list) -> pd.DataFrame:
     """
     Standardize raw API response into a structured DataFrame with feature engineering.
+    Includes defensive logic for missing columns (KeyError prevention).
     """
     try:
+        # Initial payload verification
         if not raw_data:
-            logger.error("[Transform] Null payload received.")
+            logger.error("[Transform] Null or empty payload received.")
             raise ValueError("TRANSFORM_INPUT_EMPTY")
 
         df = pd.DataFrame(raw_data)
+        logger.info(f"[Transform] Initializing transformation for {len(df)} records.")
 
-        # Dynamic Schema Mapping
-        schema = {
+        # 1. Dynamic Schema Mapping (Riot API -> Internal System)
+        schema_map = {
             "summonerName": "player_name",
             "summonerId": "summoner_id",
             "leaguePoints": "lp",
@@ -62,27 +65,35 @@ def transform_data(raw_data):
             "losses": "losses",
         }
 
-        actual_columns = [col for col in schema.keys() if col in df.columns]
-        df = df[actual_columns].rename(
-            columns={k: v for k, v in schema.items() if k in actual_columns}
-        )
+        # [Defensive Logic] Handle schema drift by checking column existence
+        for api_key, internal_name in schema_map.items():
+            if api_key not in df.columns:
+                logger.warning(
+                    f"[Transform] Missing key '{api_key}'. Filling with default values."
+                )
+                df[internal_name] = "Unknown" if "name" in internal_name else 0
+            else:
+                df.rename(columns={api_key: internal_name}, inplace=True)
 
-        # Feature Engineering: Defensive numeric handling
-        for col in ["wins", "losses"]:
-            if col not in df.columns:
-                df[col] = 0
+        # 2. Column Selection
+        target_columns = list(schema_map.values())
+        df = df[target_columns]
 
+        # 3. Feature Engineering
         df["total_games"] = df["wins"] + df["losses"]
         df["win_rate"] = np.where(
             df["total_games"] > 0, (df["wins"] / df["total_games"] * 100).round(2), 0.0
         )
 
-        # Final DQ Check before returning to orchestrator
+        # 4. Final DQ Gate
         if not validate_data(df):
+            logger.error("[Transform] Data Quality validation failed.")
             raise ValueError("DATA_QUALITY_VALIDATION_FAILED")
 
         return df.sort_values(by="lp", ascending=False).reset_index(drop=True)
 
     except Exception as e:
-        logger.error(f"[Transform] Critical logic failure: {str(e)}")
+        logger.error(
+            f"[Transform] Critical logic failure: {type(e).__name__} - {str(e)}"
+        )
         raise
