@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Build Status](https://github.com/hypark1562/oss2/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/hypark1562/oss2/actions/workflows/main.yml/badge.svg)
 
 An End-to-End data pipeline that collects, transforms, loads, and visualizes League of Legends Challenger tier data using the Riot API.
 
@@ -45,7 +45,7 @@ graph LR
 
 - **Automated ETL Pipeline:** Full automation using Python scripts.
 - **Enterprise Logging:** Implemented `RotatingFileHandler` for log management.
-- **Data Integrity:** KNN Imputation for missing values and leakage prevention.
+- **Data Integrity:** Defensive default value injection for missing fields.
 - **DevOps Standards:** `Makefile` for build automation and pre-commit hooks.
 - **Config Management:** Centralized YAML configuration.
 
@@ -156,3 +156,12 @@ lol-data-pipeline/
 ### 3. CI/CD Pipeline Monitoring
 - **Issue:** 새벽 시간대 자동 실행되는 파이프라인의 성공/실패 여부를 즉각적으로 인지하기 어려움.
 - **Solution:** Slack Webhook을 연동하여 파이프라인 시작, 성공(적재 건수 포함), 실패(에러 로그 포함) 알림을 실시간으로 수신하는 모니터링 체계 구축.
+
+
+---
+
+## Future Roadmap
+
+1. **Model Training:** Train a Win-Rate Prediction Model using Logistic Regression & XGBoost with the accumulated dataset.
+2. **Containerization:** Packaging the pipeline with **Docker** for environment-agnostic execution.
+3. **Data Versioning (DVC)**: Implementing data lineage for reproducible ML model training.
