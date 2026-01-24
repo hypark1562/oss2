@@ -1,6 +1,5 @@
 pandas
 numpy
-scikit-learn
 requests
 sqlalchemy
 python-dotenv
@@ -8,7 +7,5 @@ pyarrow
 pytest
 matplotlib
 seaborn
-jupyter
 streamlit
 psycopg2-binary
-

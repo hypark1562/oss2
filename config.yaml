@@ -6,6 +6,3 @@ path:
 
 api:
   challenger_url: "https://kr.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5"
-
-settings:
-  knn_neighbors: 5
